@@ -1,4 +1,5 @@
 // http://localhost
+// Recebe os dados e chama as funções de validações, e se tudo der certo, chama salvarusuario()
 const express = require("express")
 const path = require("path");
 
@@ -22,10 +23,10 @@ servidorweb.get("/listarusuarios", function(pedido, resposta) { // Criação da 
 
 
 servidorweb.post("/salvarusuarios", function(pedido, resposta) { // "post" é para salvar no sistema, cadastrar usuário.
-    const usuario = pedido.body // O corpo da requisição que o cliente enviou.
+    const usuario = pedido.body // O corpo da requisição que o cliente enviou. Pega os dado qeu vieram do frontend.
     const {nomecompleto, email, cpf, cep, rua, bairro, cidade, estado} = usuario
 
-    const resultadoNome = validarnome(nomecompleto)
+    const resultadoNome = validarnome(nomecompleto) // Chama a validação
         if (!resultadoNome.valido) { // usa".valido" pelo fato das funções retornarem objetos, e não true or false.
             return resposta.status(400).json(resultadoNome) // "return" faz para tudo. "resposta" é o objeto de reposta do Express (response), ".status(400)" define o código HTTPS da resposta, no caso, requisição inválida. ".json" envia um JSON como resposta.
         }

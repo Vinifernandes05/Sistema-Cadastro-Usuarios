@@ -4,12 +4,15 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;   /* Centraliza os textos */
     margin-top: 40px;
+    background-color: rgb(255, 255, 255);
 }
 
 /* Título grande */
 .titulo {   /* O "." significa que é classe */
     font-size: 32px;
     margin-bottom: 30px;
+    color: rgb(0, 0, 0) ;
+    background-color: aliceblue;
 }
 
 /* Menu com botões lado a lado */
