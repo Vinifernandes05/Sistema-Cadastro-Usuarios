@@ -1,4 +1,4 @@
-// http://localhost:3000
+// http://localhost
 const express = require("express")
 const path = require("path");
 
@@ -9,7 +9,6 @@ const validarcep = require("../VALIDARCADASTRO/Validar_cep");
 const validarcpf = require("../VALIDARCADASTRO/Validar_cpf");
 const validaremail = require("../VALIDARCADASTRO/Validar_email");
 const validarnome = require("../VALIDARCADASTRO/Validar_nomecompleto");
-
 
 const servidorweb = express() 
 servidorweb.use(express.static(path.join(__dirname, "../FRONTEND"))) // "use" é para usar como regra no servidor. "express.static" é para quando pedir o arquivo, entregar de uma pasta.
@@ -23,7 +22,7 @@ servidorweb.get("/listarusuarios", function(pedido, resposta) { // Criação da 
 
 
 servidorweb.post("/salvarusuarios", function(pedido, resposta) { // "post" é para salvar no sistema, cadastrar usuário.
-    const usuario = pedido.body // 
+    const usuario = pedido.body // O corpo da requisição que o cliente enviou.
     const {nomecompleto, email, cpf, cep, rua, bairro, cidade, estado} = usuario
 
     const resultadoNome = validarnome(nomecompleto)

@@ -1,0 +1,27 @@
+
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;   /* Centraliza os textos */
+    margin-top: 40px;
+}
+
+/* Título grande */
+.titulo {   /* O "." significa que é classe */
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+/* Menu com botões lado a lado */
+#menu { /* O "#" significa que é ID */
+    display: flex;   /* Transforma os botões em linha horizontal  */
+    justify-content: center; /* Centraliza os botões no meio da tela */
+    gap: 15px; /* Espaço entre botões */
+    margin-bottom: 40px;
+}
+
+/* Botões do menu */
+#menu button {
+    padding: 10px 15px;
+    cursor: pointer;
+}
