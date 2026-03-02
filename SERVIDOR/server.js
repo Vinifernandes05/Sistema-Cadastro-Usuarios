@@ -1,7 +1,7 @@
 // http://localhost
 // Recebe os dados e chama as funções de validações, e se tudo der certo, chama salvarusuario()
 const express = require("express")
-const path = require("path");
+const path = require("path"); 
 
 const listarusuarios = require("../CONTROLEUSUARIO/Listar_usuarios");
 const salvarusuarios = require("../CONTROLEUSUARIO/Salvar_usuarios");
@@ -13,7 +13,6 @@ const validarnome = require("../VALIDARCADASTRO/Validar_nomecompleto");
 
 const servidorweb = express() 
 servidorweb.use(express.static(path.join(__dirname, "../FRONTEND"))) // "use" é para usar como regra no servidor. "express.static" é para quando pedir o arquivo, entregar de uma pasta.
-servidorweb.use(express.static(path.join(__dirname, "../CONTROLEUSUARIO")))
 servidorweb.use(express.json())
 
 servidorweb.get("/listarusuarios", function(pedido, resposta) { // Criação da rota. "get" é para listar, nesse caso, listar os usuários.
