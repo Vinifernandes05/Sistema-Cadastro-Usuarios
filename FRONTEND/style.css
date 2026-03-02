@@ -122,7 +122,7 @@ body {
     transition: background-color 0.2s, transform 0.1s;
 }
 
-/* Botão principal (Cadastrar, Salvar...) */
+/* Botão Cadastrar */
 #app button[type="submit"],
 #app button.btn-confirmar {
     background-color: #4a6cf7;
@@ -138,40 +138,12 @@ body {
 #app button[type="button"],
 #app button.btn-voltar {
     background-color: #e8ecf0;
-    color: #555;
+    color: #0e0e0e;
     margin-left: 10px;
 }
 
 #app button[type="button"]:hover {
     background-color: #d1d9e0;
-}
-
-/* ===== MENSAGEM DE ERRO (vermelho) ===== */
-/* Use no JS: elemento.className = "erro" */
-.erro {
-    color: #c62828;
-    background-color: #fff5f5;
-    border: 1.5px solid #ef9a9a;
-    border-radius: 6px;
-    padding: 10px 16px;
-    margin-top: 14px;
-    font-size: 13px;
-    font-weight: 600;
-    text-align: center;
-}
-
-/* ===== MENSAGEM DE SUCESSO (verde) ===== */
-/* Use no JS: elemento.className = "sucesso" */
-.sucesso {
-    color: #2e7d32;
-    background-color: #f0fdf4;
-    border: 1.5px solid #a5d6a7;
-    border-radius: 6px;
-    padding: 10px 16px;
-    margin-top: 14px;
-    font-size: 13px;
-    font-weight: 600;
-    text-align: center;
 }
 
 /* ===== TABELA de listagem (criada pelo JS no #app) ===== */

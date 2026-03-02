@@ -28,5 +28,11 @@
     "email": "121@gmail.com",
     "cpf": "057.721.645-70",
     "cep": "12312312"
+  },
+  {
+    "nomecompleto": "Vinicius Fernandes",
+    "email": "vifernandes2005@gmail.com",
+    "cpf": "11111111111",
+    "cep": "12312312"
   }
 ]
