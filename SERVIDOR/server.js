@@ -24,7 +24,7 @@ servidorweb.get("/listarusuarios", function(pedido, resposta) {
 servidorweb.post("/salvarusuarios", function(pedido, resposta) {
 
     const usuario = pedido.body
-    console.log("Dados recebidos:", usuario) // 👈 agora aparece no terminal
+    console.log("Dados recebidos:", usuario) // Aparece no terminal
 
     const {nomecompleto, email, cpf, cep} = usuario
 
