@@ -9,26 +9,20 @@ app.innerHTML = "" // Faz com que o botão "Voltar" funcione corretamente. Ele l
 }
 
 function mostrarCadastro () {
+    console.log("Botão clicado")
 app.innerHTML = `<h2>Tela de Cadastro de Usuário</h2>
                 
-                <form id="formCadastro">
+                <form action="/salvarusuarios" method="POST">
+    
+    Nome Completo: <input type="text" name="nome"><br><br>
+    Email: <input type="email" name="email"><br><br>
+    CPF: <input type="text" name="cpf"><br><br>
+    CEP: <input type="text" name="cep"><br><br>
 
-                 <label> Nome Completo: </label>
-                 <input type="text" id="nomecompleto" ><br><br>
+    <button type="button" onclick="botaoVoltar()">Voltar</button>
+    <button type="submit">Cadastrar</button>
 
-                 <label> Email: </label>
-                 <input type="email" id="email" ><br><br>
-
-                 <label> CPF: </label>
-                 <input type="text" id="cpf" maxlength= "11" ><br><br>
-
-                 <label> CEP: </label>
-                 <input type="text" id="cep" maxlength= "8" ><br><br>
-                                                 
-                 <button onclick = "botaoVoltar()">Voltar</button> 
-                 <button>Cadastrar</button>
-
-                 </form>
+</form>
                  <div id="mensagem" ></div>
 `
 

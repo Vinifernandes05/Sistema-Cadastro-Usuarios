@@ -1,5 +1,6 @@
 // http://localhost
 // Recebe os dados e chama as funções de validações, e se tudo der certo, chama salvarusuario()
+
 const express = require("express")
 const path = require("path"); 
 
