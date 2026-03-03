@@ -41,14 +41,13 @@ async function mostrarLista () {
     const dados = await resposta.json()
     let lista = ""
     for (let i = 0; i < dados.dados.length; i++) {
-        lista += `<div> 
-            <h3> Usuário ${i + 1} </h3>
-            <p> Nome completo: ${dados.dados[i].nomecompleto} </p>
-            <p> Email: ${dados.dados[i].email} </p>
-            <p> CPF: ${dados.dados[i].cpf} </p>
-            <p> CEP ${dados.dados[i].cep} </p>
-             </div>
-             `
+        lista += `<form> 
+                    <h2> Usuário ${i + 1} </h2>
+                    <p> Nome completo: ${dados.dados[i].nomecompleto} </p>
+                    <p> Email: ${dados.dados[i].email} </p>
+                    <p> CPF: ${dados.dados[i].cpf} </p>
+                    <p> CEP ${dados.dados[i].cep} </p>
+                  </form>`
     }
     app.innerHTML += lista
 }
