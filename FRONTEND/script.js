@@ -39,6 +39,13 @@ async function mostrarLista () {
     })
 
     const dados = await resposta.json()
+
+    if (!dados.valido) {
+        app.innerHTML += `<p> ${dados.mensagem} </p>
+        <button onclick="botaoVoltar()">Voltar</button>`
+        return
+    }
+
     let lista = ""
     for (let i = 0; i < dados.dados.length; i++) {
         lista += `<form> 
@@ -50,6 +57,8 @@ async function mostrarLista () {
                   </form>`
     }
     app.innerHTML += lista
+        app.innerHTML += `<button onclick="botaoVoltar()">Voltar</button>`
+
 }
 
 
