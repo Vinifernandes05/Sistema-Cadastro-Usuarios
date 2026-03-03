@@ -70,11 +70,18 @@ function mostrarEditar () {
 }
 
 
-function mostrarExcluir () {
-    app.innerHTML = `
-    <h2>Tela de Exclusão do Usuário</h2> 
-    <button onclick="botaoVoltar()">Voltar</button>
-    `
+async function mostrarExcluir () {
+    app.innerHTML = `<h2>Tela de Exclusão do Usuário</h2>`
+    const resposta = await fetch ("/listarusuarios")
+    const dados = await resposta.json
+
+    if (!dados.valido){
+        app.innerHTML += `
+        <p> ${dados.mensagem} </p>
+        <button onclick = "botaoVoltar()">Voltar</button>`
+        return
+    }
+
 }
 
 
