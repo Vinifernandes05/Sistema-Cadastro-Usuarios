@@ -8,8 +8,6 @@ function botaoVoltar() {
 }
 
 function mostrarCadastro () {
-    console.log("Botão clicado")
-
     app.innerHTML = `
     <h2>Tela de Cadastro de Usuário</h2>
                 
@@ -31,12 +29,30 @@ function mostrarCadastro () {
         .addEventListener("submit", enviarFormulario)
 }
 
-function mostrarLista () {
-    app.innerHTML = `
-    <h2>Tela de Listagem dos Usuários</h2>
-    <button onclick="botaoVoltar()">Voltar</button>
-    `
+
+async function mostrarLista () {
+    app.innerHTML = `<h2>Tela de Listagem dos Usuários</h2>`
+    
+    const resposta = await fetch("/listarusuarios", {
+        method: "GET",
+        headers: {"Content-Type": "application/json"}
+    })
+
+    const dados = await resposta.json()
+    let lista = ""
+    for (let i = 0; i < dados.dados.length; i++) {
+        lista += `<div> 
+            <h3> Usuário ${i + 1} </h3>
+            <p> Nome completo: ${dados.dados[i].nomecompleto} </p>
+            <p> Email: ${dados.dados[i].email} </p>
+            <p> CPF: ${dados.dados[i].cpf} </p>
+            <p> CEP ${dados.dados[i].cep} </p>
+             </div>
+             `
+    }
+    app.innerHTML += lista
 }
+
 
 function mostrarEditar () {
     app.innerHTML = `
@@ -45,12 +61,14 @@ function mostrarEditar () {
     `
 }
 
+
 function mostrarExcluir () {
     app.innerHTML = `
     <h2>Tela de Exclusão do Usuário</h2> 
     <button onclick="botaoVoltar()">Voltar</button>
     `
 }
+
 
 async function enviarFormulario (event) {
     event.preventDefault()
@@ -62,15 +80,8 @@ async function enviarFormulario (event) {
 
     const resposta = await fetch("/salvarusuarios", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            nomecompleto,
-            email,
-            cpf,
-            cep
-        })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nomecompleto, email, cpf, cep })
     })
 
     const dados = await resposta.json()
