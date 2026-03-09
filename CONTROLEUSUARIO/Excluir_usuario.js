@@ -29,3 +29,5 @@ function excluirusuario (cpf) {
         }
  
 }
+
+module.exports = excluirusuario;
