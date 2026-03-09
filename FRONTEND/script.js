@@ -50,7 +50,7 @@ async function mostrarLista () {
     for (let i = 0; i < dados.dados.length; i++) {
         lista += `<form> 
                     <h2> Usuário ${i + 1} </h2>
-                    <p> Nome completo: ${dados.dados[i].nomecompleto} </p>
+                    <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
                     <p> Email: ${dados.dados[i].email} </p>
                     <p> CPF: ${dados.dados[i].cpf} </p>
                     <p> CEP ${dados.dados[i].cep} </p>
@@ -58,7 +58,6 @@ async function mostrarLista () {
     }
     app.innerHTML += lista
         app.innerHTML += `<button onclick="botaoVoltar()">Voltar</button>`
-
 }
 
 

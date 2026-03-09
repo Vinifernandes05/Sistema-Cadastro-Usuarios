@@ -1,3 +1,5 @@
+// Arquivo responsável pela leitura do Banco de Dados, transformando o JSON em array de objetos JS.
+
 const fs = require("fs"); // Importa o módulo de sistema de arquivos.
 const path = require("path"); // 
 
