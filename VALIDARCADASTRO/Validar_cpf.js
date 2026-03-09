@@ -2,8 +2,16 @@
 
 function validarCPF (CPF) { // Função que permite salvar o CPF somente se tiver 11 digitos númericos seguidos, ou seguindo essa formatação: XXX.XXX.XXX-XX
 const cpfnormalizado = CPF.trim();
-const validarformatocpf = (/^(\d{11}|\d{3}\.\d{3}\.\d{3}\-\d{2})$/.test(cpfnormalizado))  // Permiti o CPF somente se tiver 11 digitos númericos seguidos, ou seguindo essa formatação: XXX.XXX.XXX-XX
     
+    if (cpfnormalizado === "") { 
+        return {
+            valido: false, 
+            mensagem: "CPF não pode estar vazio."
+         }
+      }
+
+const validarformatocpf = (/^(\d{11}|\d{3}\.\d{3}\.\d{3}\-\d{2})$/.test(cpfnormalizado))  // Permiti o CPF somente se tiver 11 digitos númericos seguidos, ou seguindo essa formatação: XXX.XXX.XXX-XX
+
     if (!validarformatocpf) { // Se o CPF NÃO tiver a formatação correta.
         return { 
             valido: false, 

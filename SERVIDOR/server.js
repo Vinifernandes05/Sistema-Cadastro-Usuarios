@@ -5,6 +5,7 @@ const path = require("path")
 
 const listarusuarios = require("../CONTROLEUSUARIO/Listar_usuarios")
 const salvarusuarios = require("../CONTROLEUSUARIO/Salvar_usuarios")
+const excluirusuario = require("../CONTROLEUSUARIO/Excluir_usuario")
 
 const validarcep = require("../VALIDARCADASTRO/Validar_cep")
 const validarcpf = require("../VALIDARCADASTRO/Validar_cpf")
@@ -18,10 +19,12 @@ servidorweb.use(express.static(path.join(__dirname, "../FRONTEND")))
 servidorweb.use(express.json())
 servidorweb.use(express.urlencoded({ extended: true }))
 
+
 servidorweb.get("/listarusuarios", function(pedido, resposta) {
     const arrayusuarios = listarusuarios()
     resposta.json(arrayusuarios)
 })
+
 
 servidorweb.post("/salvarusuarios", function(pedido, resposta) {
 
@@ -59,6 +62,12 @@ servidorweb.post("/salvarusuarios", function(pedido, resposta) {
 
     return resposta.status(201).json({ mensagem: "Usuário Cadastrado com Sucesso!" })
 })
+
+servidorweb.delete("/excluirusuario", function (pedido, respsota) {
+
+
+})
+
 
 servidorweb.listen(3000, function() {
     console.log("Servidor rodando na porta 3000.")

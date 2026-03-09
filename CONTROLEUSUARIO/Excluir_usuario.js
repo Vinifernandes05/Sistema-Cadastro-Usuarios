@@ -8,7 +8,7 @@ function excluirusuario (cpf) {
     if (usuarios.length === 0) {
         return {
             valido: false,
-            mensagem: "Sem usuário cadastrado."
+            mensagem: "Nenhum usuário cadastrado."
         }
     }
 

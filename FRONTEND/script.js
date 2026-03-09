@@ -12,10 +12,17 @@ function mostrarCadastro () {
     <h2>Tela de Cadastro de Usuário</h2>
                 
     <form id="formCadastro">
-        Nome Completo: <input type="text" id="nomecompleto"><br><br>
-        Email: <input type="email" id="email"><br><br>
-        CPF: <input type="text" id="cpf"><br><br>
-        CEP: <input type="text" id="cep"><br><br>
+        <label>Nome Completo:</label>
+        <input type="text" id="nomecompleto" placeholder="Campo Obrigatório">
+
+        <label>Email:</label>
+        <input type="email" id="email" placeholder="Campo Obrigatório">
+
+        <label>CPF:</label>
+        <input type="text" id="cpf" placeholder="Campo Obrigatório">
+
+        <label>CEP:</label>
+        <input type="text" id="cep" placeholder="Campo Obrigatório">
 
         <button type="button" onclick="botaoVoltar()">Voltar</button>
         <button type="submit">Cadastrar</button>
@@ -41,8 +48,7 @@ async function mostrarLista () {
     const dados = await resposta.json()
 
     if (!dados.valido) {
-        app.innerHTML += `<p> ${dados.mensagem} </p>
-        <button onclick="botaoVoltar()">Voltar</button>`
+        app.innerHTML += `<p> ${dados.mensagem} </p>`
         return
     }
 
@@ -61,25 +67,65 @@ async function mostrarLista () {
 }
 
 
-function mostrarEditar () {
+async function mostrarEditar () {
     app.innerHTML = `
-    <h2>Tela de Edição do Usuário</h2>
-    <button onclick="botaoVoltar()">Voltar</button>
-    `
+    <h2>Tela de Edição do Usuário</h2>`
+
+    const resposta = await fetch ("/listarusuarios", {
+        method: "GET",
+        headers: {"Content-Type": "application;json"}
+    })
+
+    const dados = await resposta.json()
+    
+
+  if (!dados.valido) {
+        app.innerHTML += `<p> ${dados.mensagem} </p>`
+        return
+    }
+
+    let lista = ""
+    for (let i = 0; i < dados.dados.length; i++) {
+        lista += `<form> 
+                    <h2> Usuário ${i + 1} </h2>
+                    <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
+                    <p> Email: ${dados.dados[i].email} </p>
+                    <p> CPF: ${dados.dados[i].cpf} </p>
+                    <p> CEP ${dados.dados[i].cep} </p>
+                  </form>`
+    }
+    app.innerHTML += lista
+        app.innerHTML += `<button onclick="botaoVoltar()">Voltar</button>`
 }
 
 
 async function mostrarExcluir () {
     app.innerHTML = `<h2>Tela de Exclusão do Usuário</h2>`
-    const resposta = await fetch ("/listarusuarios")
-    const dados = await resposta.json
 
-    if (!dados.valido){
-        app.innerHTML += `
-        <p> ${dados.mensagem} </p>
-        <button onclick = "botaoVoltar()">Voltar</button>`
+    const resposta = await fetch("/listarusuarios", {
+        method: "GET",
+        headers: {"Content-Type": "application/json"}
+    })
+
+    const dados = await resposta.json()
+
+    if (!dados.valido) {
+        app.innerHTML += `<p> ${dados.mensagem} </p>`
         return
     }
+
+    let lista = ""
+    for (let i = 0; i < dados.dados.length; i++) {
+        lista += `<form> 
+                    <h2> Usuário ${i + 1} </h2>
+                    <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
+                    <p> Email: ${dados.dados[i].email} </p>
+                    <p> CPF: ${dados.dados[i].cpf} </p>
+                    <p> CEP ${dados.dados[i].cep} </p>
+                  </form>`
+    }
+    app.innerHTML += lista
+        app.innerHTML += `<button onclick="botaoVoltar()">Voltar</button>`
 
 }
 
@@ -101,3 +147,4 @@ async function enviarFormulario (event) {
     const dados = await resposta.json()
     document.getElementById("mensagem").innerHTML = dados.mensagem
 }
+
