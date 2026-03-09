@@ -1,3 +1,5 @@
+//Arquivo responsável pelo salvamento do cadastro do usuário no arquivo JSON, em formato de array de objetos.
+
 const fs = require("fs");
 const path = require("path");
 const lerbanco = require("../BANCODEDADOS/Ler_banco"); // Importa a função "lerbanco()" da pasta "BANCODEDADOS", do arquivo "Ler_banco"

@@ -1,4 +1,4 @@
-
+// Arquivo responsável pela validação da formatação do Nome.
 
 function nomeincorreto (nomecompleto) {
    const nome = nomecompleto.trim();

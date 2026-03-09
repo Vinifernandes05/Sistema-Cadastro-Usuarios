@@ -1,3 +1,5 @@
+// Arquivo responsável pela validação da formatação do Email e pela verificação da existência de um Email igual já cadastrado no sistema.
+
 const lerbanco = require("../BANCODEDADOS/Ler_banco");
 
 

@@ -1,4 +1,4 @@
-// Tela dinâmica para a página; Receber dados do usuário, e enviar para a rota /salvarusuarios
+// Arquivo responsável pela criação da tela dinâmica da página, receber dados do usuário e enviar para a rota /salvarusuarios, além de enviar mensagens para o front.
 
 const app = document.getElementById("app")
 const menu = document.getElementById("menu")

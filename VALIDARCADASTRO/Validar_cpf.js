@@ -1,4 +1,4 @@
-
+// Arquivo responsável pela validação da formatação do CPF.
 
 function validarCPF (CPF) { // Função que permite salvar o CPF somente se tiver 11 digitos númericos seguidos, ou seguindo essa formatação: XXX.XXX.XXX-XX
 const cpfnormalizado = CPF.trim();

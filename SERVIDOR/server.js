@@ -1,3 +1,5 @@
+// Arquivo responsável pelo backend principal da aplicação, inicializa o servidor web com Express, serve os arquivos e recebe requisições do frontend, responde com JSON. 
+
 const express = require("express")
 const path = require("path")
 
