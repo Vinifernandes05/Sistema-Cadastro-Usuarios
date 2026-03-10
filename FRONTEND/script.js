@@ -1,4 +1,4 @@
-// Arquivo responsável pela criação da tela dinâmica da página, receber dados do usuário e enviar para a rota /salvarusuarios, além de enviar mensagens para o front.
+// Arquivo responsável pela criação da tela dinâmica da página, receber dados do usuário e enviar para a rota /salvarusuario, além de enviar mensagens para o front.
 
 const app = document.getElementById("app")
 const menu = document.getElementById("menu")
@@ -59,7 +59,7 @@ async function mostrarLista () {
                     <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
                     <p> Email: ${dados.dados[i].email} </p>
                     <p> CPF: ${dados.dados[i].cpf} </p>
-                    <p> CEP ${dados.dados[i].cep} </p>
+                    <p> CEP: ${dados.dados[i].cep} </p>
                   </form>`
     }
     app.innerHTML += lista
@@ -91,7 +91,7 @@ async function mostrarEditar () {
                     <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
                     <p> Email: ${dados.dados[i].email} </p>
                     <p> CPF: ${dados.dados[i].cpf} </p>
-                    <p> CEP ${dados.dados[i].cep} </p>
+                    <p> CEP: ${dados.dados[i].cep} </p>
                   </form>`
     }
     app.innerHTML += lista
@@ -148,9 +148,8 @@ async function mostrarExcluir () {
      }
 
     alert(dados.mensagem)
-    mostrarExcluir()
-     
-        }
+    mostrarExcluir() 
+}
 
 
 async function enviarFormulario (event) {
@@ -161,7 +160,7 @@ async function enviarFormulario (event) {
     const cpf = document.getElementById("cpf").value
     const cep = document.getElementById("cep").value
 
-    const resposta = await fetch("/salvarusuarios", {
+    const resposta = await fetch("/salvarusuario", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify ({ nomecompleto, email, cpf, cep })

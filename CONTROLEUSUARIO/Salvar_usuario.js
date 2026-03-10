@@ -12,6 +12,11 @@ function salvarusuario (usuario) { // Função para salvar o usuário em um arqu
              const dados = JSON.stringify(usuarios, null, 2); // Transforma o array "usuarios" em uma string JSON. Objeto → String. JS -> JSON.
              fs.writeFileSync (caminho, dados) // Escreve os dados e salva tudo no arquivo "Dados_usuarios.json".
                   console.log("\nDados salvos com sucesso.")
+
+                  return {
+                        valido: true, 
+                        mensagem: "Usuário cadastrado com sucesso."
+                  }
         }
 
 module.exports = salvarusuario; // Exporta a função "salvarusuario".

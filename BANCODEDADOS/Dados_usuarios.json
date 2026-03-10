@@ -1,20 +1,26 @@
 [
   {
+    "nomecompleto": "maarta",
+    "email": "vinaiferaanaaasasndes2005@gmail.com",
+    "cpf": "057.721.645-70",
+    "cep": "12121212"
+  },
+  {
+    "nomecompleto": "Pablo",
+    "email": "vinaiferaanaaaasasndes2005@gmail.com",
+    "cpf": "057.721.645-70",
+    "cep": "12121212"
+  },
+  {
     "nomecompleto": "Vinicius Fernandes",
     "email": "vinifernandes2005@gmail.com",
     "cpf": "057.721.645-70",
     "cep": "12312312"
   },
   {
-    "nomecompleto": "Vinicius Fernandes",
-    "email": "vinifernanasasdes2005@gmail.com",
+    "nomecompleto": "Vinicius ",
+    "email": "vinifernBHandes2005@gmail.com",
     "cpf": "057.721.645-70",
-    "cep": "12312312"
-  },
-  {
-    "nomecompleto": "Vinicius Fernandes",
-    "email": "viniferfgddnandes2005@gmail.com",
-    "cpf": "11111111111",
     "cep": "12312312"
   }
 ]

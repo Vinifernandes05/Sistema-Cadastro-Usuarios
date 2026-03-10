@@ -4,7 +4,7 @@ const express = require("express") // Importa "express", Framework que cria o se
 const path = require("path") // Importa "path", Biblioteca para trabalhar com caminhos de pastas/arquivos.
 
 const listarusuarios = require("../CONTROLEUSUARIO/Listar_usuarios")
-const salvarusuarios = require("../CONTROLEUSUARIO/Salvar_usuarios")
+const salvarusuario = require("../CONTROLEUSUARIO/Salvar_usuario")
 const excluirusuario = require("../CONTROLEUSUARIO/Excluir_usuario")
 
 const validarcep = require("../VALIDARCADASTRO/Validar_cep")
@@ -26,7 +26,7 @@ servidorweb.get("/listarusuarios", function(pedido, resposta) {
 })
 
 
-servidorweb.post("/salvarusuarios", function(pedido, resposta) {
+servidorweb.post("/salvarusuario", function(pedido, resposta) {
     const usuario = pedido.body
     console.log("Dados recebidos:", usuario) // Aparece no terminal
 
@@ -57,21 +57,19 @@ servidorweb.post("/salvarusuarios", function(pedido, resposta) {
         return resposta.status(400).json(resultadoCEP)
     }
 
-    salvarusuarios(usuario)
-
-    return resposta.status(201).json({ mensagem: "Usuário Cadastrado com Sucesso!" })
+    const resultadoSalvar = salvarusuario(usuario)
+    return resposta.status(201).json(resultadoSalvar)
 })
 
 servidorweb.delete("/excluirusuario", function (pedido, resposta) {
     const cpf = pedido.body.cpf
+
     const resultado = excluirusuario(cpf)
-    
     if (!resultado.valido) {
         return resposta.status(400).json(resultado)
     }
 
     return resposta.status(200).json(resultado)
-
     }
 
 )
