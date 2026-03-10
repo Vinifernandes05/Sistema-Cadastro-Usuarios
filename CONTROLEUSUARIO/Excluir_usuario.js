@@ -1,6 +1,7 @@
 // Arquivo responsável pela exclusão do usuário.
 
 const lerbanco = require ("../BANCODEDADOS/Ler_banco"); // Importa a função "lerbanco()", do arquivo "Ler_banco" e da pasta "BANCODEDADOS".
+const salvarbanco = require ("../BANCODEDADOS/Salvar_banco"); // Importa a função "salvarbanco()", do arquivo "Salvar_banco" e da pasta "BANCODEDADOS".
 
 function excluirusuario (cpf) {
     const usuarios = lerbanco();
@@ -22,6 +23,7 @@ function excluirusuario (cpf) {
 
      const nomeUsuarioRemovido = usuarios[indice].nomecompleto; // Seleciona o usuário excluido.
      usuarios.splice(indice, 1) // Remove apenas o usuário do array.
+     salvarbanco(usuarios);
         
         return {
             valido: true,

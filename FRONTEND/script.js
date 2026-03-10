@@ -32,8 +32,8 @@ function mostrarCadastro () {
     `
 
     document
-        .getElementById("formCadastro")
-        .addEventListener("submit", enviarFormulario)
+        .getElementById("formCadastro") // Encontra o formulário no HTML.
+        .addEventListener("submit", enviarFormulario) // Quando enviado, chama a função "enviarFormulario".
 }
 
 
@@ -73,7 +73,7 @@ async function mostrarEditar () {
 
     const resposta = await fetch ("/listarusuarios", {
         method: "GET",
-        headers: {"Content-Type": "application;json"}
+        headers: {"Content-Type": "application/json"}
     })
 
     const dados = await resposta.json()
@@ -131,7 +131,7 @@ async function mostrarExcluir () {
 
 
 async function enviarFormulario (event) {
-    event.preventDefault()
+    event.preventDefault() // Impede o recarregamento de página no HTML, para que o JS asssuma o controle.
 
     const nomecompleto = document.getElementById("nomecompleto").value
     const email = document.getElementById("email").value
