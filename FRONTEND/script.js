@@ -42,7 +42,7 @@ async function mostrarLista () {
     
     const resposta = await fetch("/listarusuarios", {
         method: "GET",
-        headers: {"Content-Type": "application/json"}
+        headers: {"Content-Type": "application/json"} // Quando é enviado dados no body em formato JSON.
     })
 
     const dados = await resposta.json()
@@ -121,13 +121,36 @@ async function mostrarExcluir () {
                     <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
                     <p> Email: ${dados.dados[i].email} </p>
                     <p> CPF: ${dados.dados[i].cpf} </p>
-                    <p> CEP ${dados.dados[i].cep} </p>
+                    <p> CEP: ${dados.dados[i].cep} </p>
+                    <button type="button" onclick="botaoExcluir('${dados.dados[i].cpf}')">Excluir</button>
                   </form>`
     }
+
     app.innerHTML += lista
-        app.innerHTML += `<button onclick="botaoVoltar()">Voltar</button>`
+    app.innerHTML += `<button onclick="botaoVoltar()">Voltar</button>`
 
 }
+
+
+ async function botaoExcluir (cpf) {
+        const resposta = await fetch ("/excluirusuario", {
+            method: "DELETE",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify ({cpf: cpf})
+     }
+     )
+
+     const dados = await resposta.json()
+
+     if(!dados.valido) {
+        app.innerHTML += `<p> ${dados.mensagem} </p>`
+        return
+     }
+
+    alert(dados.mensagem)
+    mostrarExcluir()
+     
+        }
 
 
 async function enviarFormulario (event) {
@@ -141,7 +164,7 @@ async function enviarFormulario (event) {
     const resposta = await fetch("/salvarusuarios", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nomecompleto, email, cpf, cep })
+        body: JSON.stringify ({ nomecompleto, email, cpf, cep })
     })
 
     const dados = await resposta.json()

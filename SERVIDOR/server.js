@@ -62,10 +62,19 @@ servidorweb.post("/salvarusuarios", function(pedido, resposta) {
     return resposta.status(201).json({ mensagem: "Usuário Cadastrado com Sucesso!" })
 })
 
-servidorweb.delete("/excluirusuario", function (pedido, respsota) {
+servidorweb.delete("/excluirusuario", function (pedido, resposta) {
+    const cpf = pedido.body.cpf
+    const resultado = excluirusuario(cpf)
+    
+    if (!resultado.valido) {
+        return resposta.status(400).json(resultado)
+    }
 
+    return resposta.status(200).json(resultado)
 
-})
+    }
+
+)
 
 
 servidorweb.listen(3000, function() {
