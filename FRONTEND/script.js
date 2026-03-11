@@ -122,7 +122,7 @@ async function mostrarExcluir () {
                     <p> Email: ${dados.dados[i].email} </p>
                     <p> CPF: ${dados.dados[i].cpf} </p>
                     <p> CEP: ${dados.dados[i].cep} </p>
-                    <button type="button" onclick="botaoExcluir('${dados.dados[i].cpf}')">Excluir</button>
+                    <button type="button" class="btn-excluir" onclick="botaoExcluir('${dados.dados[i].cpf}')">Excluir</button>
                   </form>`
     }
 

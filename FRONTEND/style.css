@@ -143,6 +143,17 @@ body {
     margin-left: 10px;
 }
 
+/* ===== Botão Excluir ===== */
+#app button.btn-excluir {
+    background-color: #df2222;   /* vermelho */
+    color: white;
+    margin-left: 0;              /* sem deslocamento lateral */
+}
+
+#app button.btn-excluir:hover {
+    transform: translateY(-1px);
+}
+
 #app button[type="button"]:hover {
     background-color: #d1d9e0;
 }

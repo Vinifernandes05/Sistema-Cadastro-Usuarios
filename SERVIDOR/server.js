@@ -32,34 +32,41 @@ servidorweb.post("/salvarusuario", function(pedido, resposta) {
 
     const {nomecompleto, email, cpf, cep} = usuario
 
-    const resultadoNome = validarnome(nomecompleto)
+    usuario.nomecompleto = nomecompleto.trim().replace(/\s+/g, " ")
+
+    const resultadoNome = validarnome(usuario.nomecompleto)
     if (!resultadoNome.valido) {
         return resposta.status(400).json(resultadoNome)
     }
 
-    const resultadoEmailFormato = validaremail.emailincorreto(email)
+    usuario.email = email.trim().toLowerCase()
+
+    const resultadoEmailFormato = validaremail.emailincorreto(usuario.email)
     if (!resultadoEmailFormato.valido) {
         return resposta.status(400).json(resultadoEmailFormato)
     }
 
-    const resultadoEmailRepetido = validaremail.emailrepetido(email)
+    const resultadoEmailRepetido = validaremail.emailrepetido(usuario.email)
     if(!resultadoEmailRepetido.valido) {
         return resposta.status(400).json(resultadoEmailRepetido)
     }
 
-    const resultadoCPFFormato = validarcpf.validarCPF(cpf)
+    usuario.cpf = cpf.trim().replace(/\D/g, "") // normaliza antes de salvar
+
+
+    const resultadoCPFFormato = validarcpf.validarCPF(usuario.cpf)
     if (!resultadoCPFFormato.valido) {
         return resposta.status(400).json(resultadoCPFFormato)
     }
 
-    const resultadoCPFRepetido = validarcpf.cpfrepetido(cpf)
+    const resultadoCPFRepetido = validarcpf.cpfrepetido(usuario.cpf)
     if (!resultadoCPFRepetido.valido) {
         return resposta.status(400).json(resultadoCPFRepetido)
     }
     
-    usuario.cpf = cpf.trim().replace(/\D/g, "") // normaliza antes de salvar
+    usuario.cep = cep.trim()
 
-    const resultadoCEP = validarcep(cep)
+    const resultadoCEP = validarcep(usuario.cep)
     if (!resultadoCEP.valido) {
         return resposta.status(400).json(resultadoCEP)
     }
