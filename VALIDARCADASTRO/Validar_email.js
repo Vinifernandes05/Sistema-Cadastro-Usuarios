@@ -2,7 +2,6 @@
 
 const lerbanco = require("../BANCODEDADOS/Ler_banco");
 
-
 function emailincorreto (email) { // Função que NÃO permite que o campo "E-mail" fique com espaços em branco/ENTER.
    const emailnormalizado = email.trim().toLowerCase();
 

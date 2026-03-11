@@ -47,10 +47,17 @@ servidorweb.post("/salvarusuario", function(pedido, resposta) {
         return resposta.status(400).json(resultadoEmailRepetido)
     }
 
-    const resultadoCPF = validarcpf(cpf)
-    if (!resultadoCPF.valido) {
-        return resposta.status(400).json(resultadoCPF)
+    const resultadoCPFFormato = validarcpf.validarCPF(cpf)
+    if (!resultadoCPFFormato.valido) {
+        return resposta.status(400).json(resultadoCPFFormato)
     }
+
+    const resultadoCPFRepetido = validarcpf.cpfrepetido(cpf)
+    if (!resultadoCPFRepetido.valido) {
+        return resposta.status(400).json(resultadoCPFRepetido)
+    }
+    
+    usuario.cpf = cpf.trim().replace(/\D/g, "") // normaliza antes de salvar
 
     const resultadoCEP = validarcep(cep)
     if (!resultadoCEP.valido) {

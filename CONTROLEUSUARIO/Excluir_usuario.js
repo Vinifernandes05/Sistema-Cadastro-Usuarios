@@ -13,7 +13,8 @@ function excluirusuario (cpf) {
         }
     }
 
-    const indice = usuarios.findIndex(usuario => usuario.cpf === cpf); // Percorre cada usuário e verifica se o cpf deste usuário é o recebido pela função.
+    const cpfnormalizado = cpf.trim().replace(/\D/g, "")
+    const indice = usuarios.findIndex(usuario => usuario.cpf.trim().replace(/\D/g, "") === cpfnormalizado); // Percorre cada usuário e verifica se o cpf deste usuário é o recebido pela função.
      if (indice === -1) { // Se não encontrar nenhum CPF... o findIndex retorna -1 automaticamente, não é algo inventado.
         return {
             valido: false,
