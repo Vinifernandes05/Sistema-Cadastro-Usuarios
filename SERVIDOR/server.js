@@ -26,11 +26,11 @@ servidorweb.get("/listarusuarios", function(pedido, resposta) {
 })
 
 
-servidorweb.post("/salvarusuario", function(pedido, resposta) {
+servidorweb.post("/salvarusuario", async function(pedido, resposta) {
     const usuario = pedido.body
     console.log("Dados recebidos:", usuario) // Aparece no terminal
 
-    const {nomecompleto, email, cpf, cep} = usuario
+    const {nomecompleto, email, cpf, cep} = usuario // Extrai as propriedades de dentro do usuario
 
     usuario.nomecompleto = nomecompleto.trim().replace(/\s+/g, " ")
 
@@ -64,16 +64,20 @@ servidorweb.post("/salvarusuario", function(pedido, resposta) {
         return resposta.status(400).json(resultadoCPFRepetido)
     }
     
-    usuario.cep = cep.trim()
+    usuario.cep = cep.trim().replace(/\D/g, "")
 
     const resultadoCEP = validarcep(usuario.cep)
     if (!resultadoCEP.valido) {
         return resposta.status(400).json(resultadoCEP)
     }
 
-    const resultadoSalvar = salvarusuario(usuario)
+    const resultadoSalvar = await salvarusuario(usuario)
+    if (!resultadoSalvar.valido) {
+        return resposta.status(400).json(resultadoSalvar)
+    }
     return resposta.status(201).json(resultadoSalvar)
 })
+
 
 servidorweb.delete("/excluirusuario", function (pedido, resposta) {
     const cpf = pedido.body.cpf

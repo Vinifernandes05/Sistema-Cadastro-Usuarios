@@ -68,8 +68,7 @@ async function mostrarLista () {
 
 
 async function mostrarEditar () {
-    app.innerHTML = `
-    <h2>Tela de Edição do Usuário</h2>`
+    app.innerHTML = `<h2>Tela de Edição do Usuário</h2>`
 
     const resposta = await fetch ("/listarusuarios", {
         method: "GET",
@@ -96,6 +95,11 @@ async function mostrarEditar () {
     }
     app.innerHTML += lista
         app.innerHTML += `<button onclick="botaoVoltar()">Voltar</button>`
+}
+
+
+async function botaoEditar (nomedousuario, email, cpf, cep) {
+    
 }
 
 
@@ -132,8 +136,8 @@ async function mostrarExcluir () {
 }
 
 
- async function botaoExcluir (cpf, nome) {
-    const confirmarexclusao = confirm(`Tem certeza que deseja excluir ${nome}?`)
+ async function botaoExcluir (cpf, nomedousuario) {
+    const confirmarexclusao = confirm(`Tem certeza que deseja excluir ${nomedousuario}?`)
         
     if (!confirmarexclusao) {
             return;
