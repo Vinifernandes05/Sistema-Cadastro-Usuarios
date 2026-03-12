@@ -158,6 +158,18 @@ body {
     background-color: #d1d9e0;
 }
 
+/* ===== Botão de Visualizar mais detalhes ===== */
+#app button.btn-mostrardetalhes {
+    background-color: #7796c5;
+    color: white;
+    margin-left: 0;
+}
+
+#app button[type="button"]:hover {
+    background-color:#d1d9e0;
+}
+
+
 /* ===== TABELA de listagem (criada pelo JS no #app) ===== */
 #app table {
     width: 100%;
