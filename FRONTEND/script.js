@@ -58,7 +58,7 @@ async function mostrarLista () {
                     <h2> Usuário ${i + 1} </h2>
                     <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
                     <p> Email: ${dados.dados[i].email} </p>
-                    <p> CPF: ${dados.dados[i].cpf} </p>
+                    <p> CPF: ${formatarCPF(dados.dados[i].cpf)} </p>
                     <p> CEP: ${dados.dados[i].cep} </p>
                   </form>`
     }
@@ -90,7 +90,7 @@ async function mostrarEditar () {
                     <h2> Usuário ${i + 1} </h2>
                     <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
                     <p> Email: ${dados.dados[i].email} </p>
-                    <p> CPF: ${dados.dados[i].cpf} </p>
+                    <p> CPF: ${formatarCPF(dados.dados[i].cpf)}</p>
                     <p> CEP: ${dados.dados[i].cep} </p>
                   </form>`
     }
@@ -120,9 +120,9 @@ async function mostrarExcluir () {
                     <h2> Usuário ${i + 1} </h2>
                     <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
                     <p> Email: ${dados.dados[i].email} </p>
-                    <p> CPF: ${dados.dados[i].cpf} </p>
+                    <p> CPF: ${formatarCPF(dados.dados[i].cpf)} </p>
                     <p> CEP: ${dados.dados[i].cep} </p>
-                    <button type="button" class="btn-excluir" onclick="botaoExcluir('${dados.dados[i].cpf}')">Excluir</button>
+                    <button type="button" class="btn-excluir" onclick="botaoExcluir('${dados.dados[i].cpf}', '${dados.dados[i].nomecompleto}')">Excluir</button>
                   </form>`
     }
 
@@ -132,13 +132,20 @@ async function mostrarExcluir () {
 }
 
 
- async function botaoExcluir (cpf) {
+ async function botaoExcluir (cpf, nome) {
+    const confirmarexclusao = confirm(`Tem certeza que deseja excluir ${nome}?`)
+        
+    if (!confirmarexclusao) {
+            return;
+        }
+
         const resposta = await fetch ("/excluirusuario", {
-            method: "DELETE",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify ({cpf: cpf})
+        method: "DELETE",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify ({cpf: cpf})
      }
      )
+    
 
      const dados = await resposta.json()
 
@@ -170,3 +177,11 @@ async function enviarFormulario (event) {
     document.getElementById("mensagem").innerHTML = dados.mensagem
 }
 
+
+function formatarCPF(cpf) { // Transforma a visualização do CPF na tela "XXX.XXX.XXX-XX"
+        cpf = cpf.replace(/\D/g, "") // Remove tudo que não for dígito (letras, pontos, traços, espaços). "\D" significa "não dígito". O "g" aplica em toda a string.
+        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2") // Captura os 3 primeiros dígitos e coloca um ponto depois.
+        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
+        cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Captura os últimos 3 dígitos seguidos de 1 ou 2 dígitos no final ($), e coloca um traço entre eles.
+        return cpf
+    }
