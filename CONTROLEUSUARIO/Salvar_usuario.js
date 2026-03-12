@@ -9,7 +9,7 @@ async function salvarusuario(usuario) { // Função para salvar o usuário em um
       const usuarios = lerbanco()
       const dadoscep = await buscarcep(usuario.cep)
 
-      if (!dados.valido) { // Se der erro, retorna a mensagem da função buscarcep()
+      if (!dadoscep.valido) { // Se der erro, retorna a mensagem da função buscarcep()
             return dadoscep
       }
 
