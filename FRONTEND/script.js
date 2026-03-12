@@ -59,7 +59,7 @@ async function mostrarLista () {
                     <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
                     <p> Email: ${dados.dados[i].email} </p>
                     <p> CPF: ${formatarCPF(dados.dados[i].cpf)} </p>
-                    <p> CEP: ${dados.dados[i].cep} </p>
+                    <p> CEP: ${formatarCEP(dados.dados[i].cep)} </p>
                   </form>`
     }
     app.innerHTML += lista
@@ -90,7 +90,7 @@ async function mostrarEditar () {
                     <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
                     <p> Email: ${dados.dados[i].email} </p>
                     <p> CPF: ${formatarCPF(dados.dados[i].cpf)}</p>
-                    <p> CEP: ${dados.dados[i].cep} </p>
+                    <p> CEP: ${formatarCEP(dados.dados[i].cep)} </p>
                   </form>`
     }
     app.innerHTML += lista
@@ -99,7 +99,7 @@ async function mostrarEditar () {
 
 
 async function botaoEditar (nomedousuario, email, cpf, cep) {
-    
+
 }
 
 
@@ -125,7 +125,7 @@ async function mostrarExcluir () {
                     <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
                     <p> Email: ${dados.dados[i].email} </p>
                     <p> CPF: ${formatarCPF(dados.dados[i].cpf)} </p>
-                    <p> CEP: ${dados.dados[i].cep} </p>
+                    <p> CEP: ${formatarCEP(dados.dados[i].cep)} </p>
                     <button type="button" class="btn-excluir" onclick="botaoExcluir('${dados.dados[i].cpf}', '${dados.dados[i].nomecompleto}')">Excluir</button>
                   </form>`
     }
@@ -189,3 +189,9 @@ function formatarCPF(cpf) { // Transforma a visualização do CPF na tela "XXX.X
         cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Captura os últimos 3 dígitos seguidos de 1 ou 2 dígitos no final ($), e coloca um traço entre eles.
         return cpf
     }
+    
+function formatarCEP (cep) { // Transforma a visualização do CEP na tela "XXXXX-XXX"
+    cep = cep.replace(/\D/g, "")
+    cep = cep.replace(/(\d{5})(\d)/, "$1-$2")
+    return cep
+}
