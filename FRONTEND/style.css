@@ -165,8 +165,8 @@ body {
     margin-left: 0;
 }
 
-#app button[type="button"]:hover {
-    background-color:#d1d9e0;
+#app button.btn-mostrardetalhes:hover {
+        transform: translateY(-1px);
 }
 
 
@@ -182,7 +182,7 @@ body {
 }
 
 #app input::placeholder {
-    color: #b0b8c4;       /* cinza bem suave */
+    color: #b0b8c4;     /* cinza bem suave */
     font-style: italic;   /* itálico para parecer uma dica */
     font-size: 13px;      /* levemente menor que o texto digitado */
 }

@@ -57,12 +57,21 @@ async function mostrarLista () {
         lista += `<form> 
                     <h2> Usuário ${i + 1} </h2>
 
-                    <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
-                    <p> Email: ${dados.dados[i].email} </p>
-                    <p> CPF: ${formatarCPF(dados.dados[i].cpf)} </p>
-                    <p> CEP: ${formatarCEP(dados.dados[i].cep)} </p>
+                        <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
+                        <p> Email: ${dados.dados[i].email} </p>
+                        <p> CPF: ${formatarCPF(dados.dados[i].cpf)} </p>
+                        <p> CEP: ${formatarCEP(dados.dados[i].cep)} </p>
 
-                    <button type="button" class="btn-mostrardetalhes" onclick="botaoMostrarDetalhes(${i})">Visualizar mais detalhes</button>
+                    <button type="button" class="btn-mostrardetalhes" onclick="botaoMostrarDetalhes(${i})">Visualizar mais detalhes </button>
+                    
+                    <div id="detalhes${i}" style="display:none">
+
+                        <p> Rua: ${dados.dados[i].rua} </p>
+                        <p> Bairro: ${dados.dados[i].bairro} </p>
+                        <p> Cidade: ${dados.dados[i].cidade} </p>
+                        <p> Estado: ${dados.dados[i].estado} </p>
+
+                    </div>
 
                   </form>`
     }
@@ -183,19 +192,4 @@ async function enviarFormulario (event) {
 
     const dados = await resposta.json()
     document.getElementById("mensagem").innerHTML = dados.mensagem
-}
-
-
-function formatarCPF(cpf) { // Transforma a visualização do CPF na tela "XXX.XXX.XXX-XX"
-        cpf = cpf.replace(/\D/g, "") // Remove tudo que não for dígito (letras, pontos, traços, espaços). "\D" significa "não dígito". O "g" aplica em toda a string.
-        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2") // Captura os 3 primeiros dígitos e coloca um ponto depois.
-        cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
-        cpf = cpf.replace(/(\d{3})(\d{1,2})$/, "$1-$2"); // Captura os últimos 3 dígitos seguidos de 1 ou 2 dígitos no final ($), e coloca um traço entre eles.
-        return cpf
-    }
-    
-function formatarCEP (cep) { // Transforma a visualização do CEP na tela "XXXXX-XXX"
-    cep = cep.replace(/\D/g, "")
-    cep = cep.replace(/(\d{5})(\d)/, "$1-$2")
-    return cep
 }
