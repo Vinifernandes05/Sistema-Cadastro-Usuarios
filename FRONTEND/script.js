@@ -3,9 +3,11 @@
 const app = document.getElementById("app")
 const menu = document.getElementById("menu")
 
+
 function botaoVoltar() { 
     app.innerHTML = ""
 }
+
 
 function mostrarCadastro () {
     app.innerHTML = `
@@ -175,6 +177,16 @@ async function mostrarExcluir () {
     mostrarExcluir() 
 }
 
+function botaoMostrarDetalhes (index) {
+    const divDetalhes = document.getElementById(`detalhes${index}`)
+
+        if (divDetalhes.style.display === "none") {
+            divDetalhes.style.display = "block"
+        } else {
+            divDetalhes.style.display = "none"
+        }
+}
+
 
 async function enviarFormulario (event) {
     event.preventDefault() // Impede o recarregamento de página no HTML, para que o JS asssuma o controle.
@@ -193,3 +205,5 @@ async function enviarFormulario (event) {
     const dados = await resposta.json()
     document.getElementById("mensagem").innerHTML = dados.mensagem
 }
+
+
