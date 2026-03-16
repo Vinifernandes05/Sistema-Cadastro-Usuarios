@@ -169,6 +169,10 @@ body {
         transform: translateY(-1px);
 }
 
+/* ===== Detalhes expandidos (Rua, Bairro, etc.) ===== */
+#app [id^="detalhes"] {
+    margin-top: 20px;
+}
 
 /* ===== TABELA de listagem (criada pelo JS no #app) ===== */
 #app table {

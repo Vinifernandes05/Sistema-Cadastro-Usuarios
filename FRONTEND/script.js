@@ -64,7 +64,7 @@ async function mostrarLista () {
                         <p> CPF: ${formatarCPF(dados.dados[i].cpf)} </p>
                         <p> CEP: ${formatarCEP(dados.dados[i].cep)} </p>
 
-                    <button type="button" class="btn-mostrardetalhes" onclick="botaoMostrarDetalhes(${i})">Visualizar mais detalhes </button>
+                    <button type="button" class="btn-mostrardetalhes" onclick="botaoMostrarDetalhes(${i}, this)">Visualizar mais detalhes </button>
                     
                     <div id="detalhes${i}" style="display:none">
 
@@ -177,13 +177,17 @@ async function mostrarExcluir () {
     mostrarExcluir() 
 }
 
-function botaoMostrarDetalhes (index) {
+function botaoMostrarDetalhes (index, botao) {
     const divDetalhes = document.getElementById(`detalhes${index}`)
 
         if (divDetalhes.style.display === "none") {
+
             divDetalhes.style.display = "block"
+            botao.textContent = "Ocultar detalhes"
+
         } else {
             divDetalhes.style.display = "none"
+            botao.textContent = "Visualizar mais detalhes"
         }
 }
 
