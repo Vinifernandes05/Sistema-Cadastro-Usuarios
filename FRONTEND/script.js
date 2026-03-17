@@ -106,10 +106,12 @@ async function mostrarEditar () {
                     <p> Email: ${dados.dados[i].email} </p>
                     <p> CPF: ${formatarCPF(dados.dados[i].cpf)}</p>
                     <p> CEP: ${formatarCEP(dados.dados[i].cep)} </p>
+
+                    <button type="button" class="btn-editar" onclick="botaoEditar(${i})">Editar usuário </button>
                   </form>`
     }
     app.innerHTML += lista
-        app.innerHTML += `<button onclick="botaoVoltar()">Voltar</button>`
+       app.innerHTML += `<button onclick="botaoVoltar()">Voltar</button>`
 }
 
 
@@ -147,7 +149,6 @@ async function mostrarExcluir () {
 
     app.innerHTML += lista
     app.innerHTML += `<button onclick="botaoVoltar()">Voltar</button>`
-
 }
 
 
@@ -176,6 +177,7 @@ async function mostrarExcluir () {
     alert(dados.mensagem)
     mostrarExcluir() 
 }
+
 
 function botaoMostrarDetalhes (index, botao) {
     const divDetalhes = document.getElementById(`detalhes${index}`)
