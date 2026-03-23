@@ -14,6 +14,7 @@ function mostrarCadastro () {
     <h2>Tela de Cadastro de Usuário</h2>
                 
     <form id="formCadastro">
+
         <label>Nome Completo:</label>
         <input type="text" id="nomecompleto" placeholder="Campo Obrigatório">
 
@@ -28,6 +29,7 @@ function mostrarCadastro () {
 
         <button type="button" onclick="botaoVoltar()">Voltar</button>
         <button type="submit">Cadastrar</button>
+
     </form>
 
     <div id="mensagem"></div>
@@ -57,6 +59,7 @@ async function mostrarLista () {
     let lista = ""
     for (let i = 0; i < dados.dados.length; i++) {
         lista += `<form> 
+
                     <h2> Usuário ${i + 1} </h2>
 
                         <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
@@ -101,6 +104,7 @@ async function mostrarEditar () {
     let lista = ""
     for (let i = 0; i < dados.dados.length; i++) {
         lista += `<form> 
+
                     <h2> Usuário ${i + 1} </h2>
                     <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
                     <p> Email: ${dados.dados[i].email} </p>
@@ -108,6 +112,7 @@ async function mostrarEditar () {
                     <p> CEP: ${formatarCEP(dados.dados[i].cep)} </p>
 
                     <button type="button" class="btn-editar" onclick="botaoEditar(${i})">Editar usuário </button>
+
                   </form>`
     }
     app.innerHTML += lista
@@ -115,8 +120,58 @@ async function mostrarEditar () {
 }
 
 
-async function botaoEditar (nomedousuario, email, cpf, cep) {
+async function botaoEditar (index) {
 
+    const resposta = await fetch ("/listarusuarios", {
+        method: "GET",
+        headers: {"Content-Type": "application/json"}
+    })
+
+    const dados = await resposta.json()
+    const usuario = dados.dados[index]
+
+    app.innerHTML = `<h2> Edição do Usuário </h2>
+
+                    <form id="formEditar">
+
+                        <label> Nome Completo: </label>
+                        <input type="text" id="nomecompleto" value="${usuario.nomecompleto}">
+
+                        <label> Email: </label>
+                        <input type="email" id="email" value="${usuario.email}">
+
+                        <label> CPF: </label>
+                        <input type="text" id="cpf" value="${formatarCPF(usuario.cpf)}">
+
+                        <label> CEP: </label>
+                        <input type="text" id="cep" value="${formatarCEP(usuario.cep)}">
+
+                            <button type="button" onclick="mostrarEditar()">Voltar</button>
+                            <button type="submit">Salvar Alterações</button>
+
+                    </form> 
+
+                <div id="mensagem" ></div>
+    `
+    
+    document
+    .getElementById("formEditar")
+    .addEventListener("submit", function(event) {
+        event.preventDefault()
+        enviarEdicao(index)
+    })
+
+}
+
+
+async function enviarEdicao (index) {
+    const nomecompleto = document.getElementById("nomecompleto").value
+    const email = document.getElementById("email").value
+    const cpf = document.getElementById("cpf").value
+    const cep = document.getElementById("cep").value
+
+    console.log("Usuário sendo editado: ", index)
+    console.log({ nomecompleto, email, cpf, cep })
 }
 
 
