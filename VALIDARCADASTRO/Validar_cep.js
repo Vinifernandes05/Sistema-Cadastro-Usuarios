@@ -1,7 +1,7 @@
 // Arquivo responsável pela validação da formatação do CEP.
 
 function cepincorreto (CEP) { // Função que permite salvar o CEP somente se tiver 8 digitos numericos seguidos, ou se tiver a seguinte formatação: XXXXX-XXX
-const cepnormalizado = CEP.trim().replace(/\D/g, "");
+const cepnormalizado = CEP.trim()
    
 if (cepnormalizado === "") { 
          return {

@@ -6,12 +6,6 @@
     "cep": "12312312"
   },
   {
-    "nomecompleto": "Pasas",
-    "email": "vinifernaasasandes2005@gmail.com",
-    "cpf": "05772164571",
-    "cep": "12312312"
-  },
-  {
     "nomecompleto": "Cab",
     "email": "vinasasasfernandes2005@gmail.com",
     "cpf": "12312312312",
@@ -78,6 +72,36 @@
     "cep": "41745001",
     "rua": "1ª Avenida Centro Administrativo da Bahia",
     "bairro": "Centro Administrativo da Bahia",
+    "cidade": "Salvador",
+    "estado": "BA"
+  },
+  {
+    "nomecompleto": "Vinicius Fernandes",
+    "email": "vinifernandasaddces2005@gmail.com",
+    "cpf": "05772164510",
+    "cep": "41745001",
+    "rua": "1ª Avenida Centro Administrativo da Bahia",
+    "bairro": "Centro Administrativo da Bahia",
+    "cidade": "Salvador",
+    "estado": "BA"
+  },
+  {
+    "nomecompleto": "Aresta Fernandes",
+    "email": "vinifernandasaddces20w05@gmail.com",
+    "cpf": "05772144510",
+    "cep": "41815190",
+    "rua": "Rua Jardim Alto do Itaigara",
+    "bairro": "Itaigara",
+    "cidade": "Salvador",
+    "estado": "BA"
+  },
+  {
+    "nomecompleto": "Aresta Fernandes",
+    "email": "vinifernasdasdndasaddces20w05@gmail.com",
+    "cpf": "05772104510",
+    "cep": "41815190",
+    "rua": "Rua Jardim Alto do Itaigara",
+    "bairro": "Itaigara",
     "cidade": "Salvador",
     "estado": "BA"
   }

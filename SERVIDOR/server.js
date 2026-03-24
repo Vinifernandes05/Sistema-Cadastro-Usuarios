@@ -65,12 +65,14 @@ servidorweb.post("/salvarusuario", async function(pedido, resposta) {
 
     usuario.cpf = cpfnormalizado.replace(/\D/g, "") 
 
-    usuario.cep = cep.trim().replace(/\D/g, "")
+    const cepnormalizado = cep.trim()
 
-    const resultadoCEP = validarcep(usuario.cep)
+    const resultadoCEP = validarcep(cepnormalizado)
     if (!resultadoCEP.valido) {
         return resposta.status(400).json(resultadoCEP)
     }
+
+    usuario.cep = cepnormalizado.replace(/\D/g, "") 
 
     const resultadoSalvar = await salvarusuario(usuario)
     if (!resultadoSalvar.valido) {

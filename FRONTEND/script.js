@@ -169,9 +169,6 @@ async function enviarEdicao (index) {
     const email = document.getElementById("email").value
     const cpf = document.getElementById("cpf").value
     const cep = document.getElementById("cep").value
-
-    console.log("Usuário sendo editado: ", index)
-    console.log({ nomecompleto, email, cpf, cep })
 }
 
 
