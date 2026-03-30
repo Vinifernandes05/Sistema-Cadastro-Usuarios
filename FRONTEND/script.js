@@ -58,7 +58,7 @@ async function mostrarLista () {
 
     let lista = ""
     for (let i = 0; i < dados.dados.length; i++) {
-        lista += `<form> 
+        lista += `<div class="card-usuario"> 
 
                     <h2> Usuário ${i + 1} </h2>
 
@@ -78,7 +78,7 @@ async function mostrarLista () {
 
                     </div>
 
-                  </form>`
+                  </div>`
     }
     app.innerHTML += lista
         app.innerHTML += `<button onclick="botaoVoltar()">Voltar</button>`
@@ -103,7 +103,7 @@ async function mostrarEditar () {
 
     let lista = ""
     for (let i = 0; i < dados.dados.length; i++) {
-        lista += `<form> 
+        lista += `<div class="card-usuario"> 
 
                     <h2> Usuário ${i + 1} </h2>
                     <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
@@ -113,7 +113,7 @@ async function mostrarEditar () {
 
                     <button type="button" class="btn-editar" onclick="botaoEditar(${i})">Editar usuário </button>
 
-                  </form>`
+                  </div>`
     }
     app.innerHTML += lista
        app.innerHTML += `<button onclick="botaoVoltar()">Voltar</button>`
@@ -189,14 +189,14 @@ async function mostrarExcluir () {
 
     let lista = ""
     for (let i = 0; i < dados.dados.length; i++) {
-        lista += `<form> 
+        lista += `<div class ="card-usuario"> 
                     <h2> Usuário ${i + 1} </h2>
                     <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
                     <p> Email: ${dados.dados[i].email} </p>
                     <p> CPF: ${formatarCPF(dados.dados[i].cpf)} </p>
                     <p> CEP: ${formatarCEP(dados.dados[i].cep)} </p>
                     <button type="button" class="btn-excluir" onclick="botaoExcluir('${dados.dados[i].cpf}', '${dados.dados[i].nomecompleto}')">Excluir</button>
-                  </form>`
+                  </div>`
     }
 
     app.innerHTML += lista
