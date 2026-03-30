@@ -9,6 +9,7 @@ function botaoVoltar() {
 }
 
 
+// Tela de Cadastro de Usuário
 function mostrarCadastro () {
     app.innerHTML = `
     <h2>Tela de Cadastro de Usuário</h2>
@@ -40,7 +41,7 @@ function mostrarCadastro () {
         .addEventListener("submit", enviarFormulario) // Quando enviado, chama a função "enviarFormulario".
 }
 
-
+// Tela de Listagem dos Usuários
 async function mostrarLista () {
     app.innerHTML = `<h2>Tela de Listagem dos Usuários</h2>`
     
@@ -84,7 +85,7 @@ async function mostrarLista () {
         app.innerHTML += `<button onclick="botaoVoltar()">Voltar</button>`
 }
 
-
+// Tela de Edição dos Usuários
 async function mostrarEditar () {
     app.innerHTML = `<h2>Tela de Edição do Usuário</h2>`
 
@@ -171,7 +172,7 @@ async function enviarEdicao (index) {
     const cep = document.getElementById("cep").value
 }
 
-
+// Tela de Exclusão dos Usuários
 async function mostrarExcluir () {
     app.innerHTML = `<h2>Tela de Exclusão do Usuário</h2>`
 
