@@ -3,16 +3,18 @@
 const express = require("express") // Importa "express", Framework que cria o servidor web.
 const path = require("path") // Importa "path", Biblioteca para trabalhar com caminhos de pastas/arquivos.
 
+
 const listarusuarios = require("../CONTROLEUSUARIO/Listar_usuarios")
 const salvarusuario = require("../CONTROLEUSUARIO/Salvar_usuario")
 const excluirusuario = require("../CONTROLEUSUARIO/Excluir_usuario")
+const editarusuario  = require("../CONTROLEUSUARIO/Editar_dados_usuario")
 
 const validarcep = require("../VALIDARCADASTRO/Validar_cep")
 const validarcpf = require("../VALIDARCADASTRO/Validar_cpf")
 const validaremail = require("../VALIDARCADASTRO/Validar_email")
 const validarnome = require("../VALIDARCADASTRO/Validar_nomecompleto")
 
-
+const PORT = process.env.PORT || 3000;
 const servidorweb = express()
 
 servidorweb.use(express.static(path.join(__dirname, "../FRONTEND")))
@@ -20,13 +22,13 @@ servidorweb.use(express.json())
 servidorweb.use(express.urlencoded({ extended: true }))
 
 
-servidorweb.get("/listarusuarios", function(pedido, resposta) {
+servidorweb.get("/listarusuarios", function(pedido, resposta) { // 
     const arrayusuarios = listarusuarios()
     resposta.json(arrayusuarios)
 })
 
 
-servidorweb.post("/salvarusuario", async function(pedido, resposta) {
+servidorweb.post("/salvarusuario", async function(pedido, resposta) { // 
     const usuario = pedido.body
     console.log("Dados recebidos:", usuario) // Aparece no terminal
 
@@ -82,7 +84,58 @@ servidorweb.post("/salvarusuario", async function(pedido, resposta) {
 })
 
 
-servidorweb.delete("/excluirusuario", function (pedido, resposta) {
+servidorweb.put("/editarusuario", async function(pedido, resposta) { 
+    const {cpfOriginal, nomecompleto, email, cpf, cep} = pedido.body
+
+    // 🔹 NORMALIZAÇÃO
+    const cpfOriginalLimpo = cpfOriginal.replace(/\D/g, "")
+    const cpfNovoLimpo = cpf.trim().replace(/\D/g, "")
+    const cepLimpo = cep.trim().replace(/\D/g, "")
+
+    const nomeTratado = nomecompleto.trim().replace(/\s+/g, " ")
+    const emailTratado = email.trim().toLowerCase()
+
+    const resultadoNome = validarnome(nomeTratado)
+    if (!resultadoNome.valido) {
+        return resposta.status(400).json(resultadoNome)
+    }
+
+    const resultadoEmail = validaremail.emailincorreto(emailTratado)
+    if (!resultadoEmail.valido) {
+        return resposta.status(400).json(resultadoEmail)
+    }
+
+    const resultadoCPF = validarcpf.validarCPF(cpfNovoLimpo)
+    if (!resultadoCPF.valido) {
+        return resposta.status(400).json(resultadoCPF)
+    }
+
+    const resultadoCEP = validarcep(cepLimpo)
+    if (!resultadoCEP.valido) {
+        return resposta.status(400).json(resultadoCEP)
+    }
+
+    // Cria um objeto "usuario" com os dados tratados/normalizados, para passar para a função de edição.
+    const usuario = {
+        cpfOriginal: cpfOriginalLimpo,
+        nomecompleto: nomeTratado,
+        email: emailTratado,
+        cpf: cpfNovoLimpo,
+        cep: cepLimpo
+    }
+
+    // Chama a função de edição do usuário, que atualiza os dados no banco e retorna um resultado.
+    const resultadoEditar = await editarusuario(usuario)
+
+    if (!resultadoEditar.valido) {
+        return resposta.status(400).json(resultadoEditar)
+    }
+
+    return resposta.status(200).json(resultadoEditar)
+})
+
+
+servidorweb.delete("/excluirusuario", function (pedido, resposta) { //
     const cpf = pedido.body.cpf
 
     const resultado = excluirusuario(cpf)
@@ -92,10 +145,9 @@ servidorweb.delete("/excluirusuario", function (pedido, resposta) {
 
     return resposta.status(200).json(resultado)
     }
-
 )
 
 
-servidorweb.listen(3000, function() {
-    console.log("Servidor rodando na porta 3000.")
+servidorweb.listen(PORT, function() {
+    console.log("Servidor rodando na porta " + PORT)
 })

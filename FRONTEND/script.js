@@ -159,17 +159,27 @@ async function botaoEditar (index) {
     .getElementById("formEditar")
     .addEventListener("submit", function(event) {
         event.preventDefault()
-        enviarEdicao(index)
+        salvaralteracaoedicao(usuario.cpf)
     })
 
 }
 
 
-async function enviarEdicao (index) {
+async function salvaralteracaoedicao (cpfOriginal) {
     const nomecompleto = document.getElementById("nomecompleto").value
     const email = document.getElementById("email").value
-    const cpf = document.getElementById("cpf").value
-    const cep = document.getElementById("cep").value
+    const cep = document.getElementById("cep").value.replace(/\D/g, "")
+    const cpfNovo = document.getElementById("cpf").value.replace(/\D/g, "")
+
+    const resposta = await fetch("/editarusuario", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify ({ cpfOriginal, nomecompleto, email, cpf: cpfNovo, cep })
+    })
+
+    const dados = await resposta.json()
+
+    document.getElementById("mensagem").innerHTML = dados.mensagem
 }
 
 // Tela de Exclusão dos Usuários
