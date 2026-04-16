@@ -87,44 +87,43 @@ servidorweb.post("/salvarusuario", async function(pedido, resposta) { //
 servidorweb.put("/editarusuario", async function(pedido, resposta) { 
     const {cpfOriginal, nomecompleto, email, cpf, cep} = pedido.body
 
-    // 🔹 NORMALIZAÇÃO
-    const cpfOriginalLimpo = cpfOriginal.replace(/\D/g, "")
-    const cpfNovoLimpo = cpf.trim().replace(/\D/g, "")
-    const cepLimpo = cep.trim().replace(/\D/g, "")
+    const cpfOriginalnormalizado = cpfOriginal.trim().replace(/\D/g, "")
+    const cpfnormalizado = cpf.trim().replace(/\D/g, "")
+    const cepnormalizado = cep.trim().replace(/\D/g, "")
 
-    const nomeTratado = nomecompleto.trim().replace(/\s+/g, " ")
-    const emailTratado = email.trim().toLowerCase()
+    const nomenormalizado = nomecompleto.trim().replace(/\s+/g, " ")
+    const emailnormalizado = email.trim().toLowerCase()
 
-    const resultadoNome = validarnome(nomeTratado)
+    const resultadoNome = validarnome(nomenormalizado)
     if (!resultadoNome.valido) {
         return resposta.status(400).json(resultadoNome)
     }
 
-    const resultadoEmail = validaremail.emailincorreto(emailTratado)
-    if (!resultadoEmail.valido) {
-        return resposta.status(400).json(resultadoEmail)
+    const resultadoEmailFormato = validaremail.emailincorreto(emailnormalizado)
+    if (!resultadoEmailFormato.valido) {
+        return resposta.status(400).json(resultadoEmailFormato)
     }
 
-    const resultadoCPF = validarcpf.validarCPF(cpfNovoLimpo)
-    if (!resultadoCPF.valido) {
-        return resposta.status(400).json(resultadoCPF)
+    const resultadoCPFFormato = validarcpf.validarCPF(cpfnormalizado)
+    if (!resultadoCPFFormato.valido) {
+        return resposta.status(400).json(resultadoCPFFormato)
     }
 
-    const resultadoCEP = validarcep(cepLimpo)
+    const resultadoCEP = validarcep(cepnormalizado)
     if (!resultadoCEP.valido) {
         return resposta.status(400).json(resultadoCEP)
     }
 
-    // Cria um objeto "usuario" com os dados tratados/normalizados, para passar para a função de edição.
+    // Cria novo objeto "usuario" com os dados editados, para passar para a função de edição.
     const usuario = {
-        cpfOriginal: cpfOriginalLimpo,
-        nomecompleto: nomeTratado,
-        email: emailTratado,
-        cpf: cpfNovoLimpo,
-        cep: cepLimpo
+        cpfOriginal: cpfOriginalnormalizado,
+        nomecompleto: nomenormalizado,
+        email: emailnormalizado,
+        cpf: cpfnormalizado,
+        cep: cepnormalizado
     }
 
-    // Chama a função de edição do usuário, que atualiza os dados no banco e retorna um resultado.
+    // Chama a função de edição, passando o objeto "usuario" com os dados editados.
     const resultadoEditar = await editarusuario(usuario)
 
     if (!resultadoEditar.valido) {
