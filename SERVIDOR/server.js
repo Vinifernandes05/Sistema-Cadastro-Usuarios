@@ -3,7 +3,6 @@
 const express = require("express") // Importa "express", Framework que cria o servidor web.
 const path = require("path") // Importa "path", Biblioteca para trabalhar com caminhos de pastas/arquivos.
 
-
 const listarusuarios = require("../CONTROLEUSUARIO/Listar_usuarios")
 const salvarusuario = require("../CONTROLEUSUARIO/Salvar_usuario")
 const excluirusuario = require("../CONTROLEUSUARIO/Excluir_usuario")
@@ -86,13 +85,20 @@ servidorweb.post("/salvarusuario", async function(pedido, resposta) { //
 
 servidorweb.put("/editarusuario", async function(pedido, resposta) { 
     const {cpfOriginal, nomecompleto, email, cpf, cep} = pedido.body
-
+    
     const cpfAntigonormalizado = cpfOriginal.trim().replace(/\D/g, "")
     const cpfNovoDigitadonormalizado = cpf.trim().replace(/\D/g, "")
-    const cepnormalizado = cep.trim().replace(/\D/g, "")
+    const resultadoCPFRepetido = validarcpf.cpfrepetido(cpfNovoDigitadonormalizado)
 
+    const cepnormalizado = cep.trim().replace(/\D/g, "")
     const nomenormalizado = nomecompleto.trim().replace(/\s+/g, " ")
     const emailnormalizado = email.trim().toLowerCase()
+
+    if (cpfAntigonormalizado !== cpfNovoDigitadonormalizado) {
+        if (!resultadoCPFRepetido.valido) {
+            return resposta.status(400).json(resultadoCPFRepetido)
+        }   
+    }
 
     const resultadoNome = validarnome(nomenormalizado)
     if (!resultadoNome.valido) {
@@ -102,6 +108,24 @@ servidorweb.put("/editarusuario", async function(pedido, resposta) {
     const resultadoEmailFormato = validaremail.emailincorreto(emailnormalizado)
     if (!resultadoEmailFormato.valido) {
         return resposta.status(400).json(resultadoEmailFormato)
+    }
+
+    // Verifica email repetido apenas se o email foi alterado em relação ao que está salvo no banco
+    const usuariosdoBanco = listarusuarios()
+    let emailAtualNoBanco = ""
+
+    for (let i = 0; i < usuariosdoBanco.length; i++) {
+        if (usuariosdoBanco[i].cpf === cpfAntigonormalizado) {
+            emailAtualNoBanco = usuariosdoBanco[i].email
+            break
+        }
+    }
+
+    if (emailAtualNoBanco !== emailnormalizado) {
+        const resultadoEmailRepetido = validaremail.emailrepetido(emailnormalizado)
+        if (!resultadoEmailRepetido.valido) {
+            return resposta.status(400).json(resultadoEmailRepetido)
+        }
     }
 
     const resultadoCPFFormato = validarcpf.validarCPF(cpfNovoDigitadonormalizado)

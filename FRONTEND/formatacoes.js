@@ -1,4 +1,4 @@
-// Arquivo responsável pelas formatações do CPF e CEP, que são visiveis na tela.
+// Arquivo responsável pelas formatações do CPF e CEP (Frontend) que são visiveis na tela.
 
 // Função responsável por mostrar o CPF na tela desse formato: "XXX.XXX.XXX-XX"
 function formatarCPF (cpf) { 

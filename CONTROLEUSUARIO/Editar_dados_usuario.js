@@ -8,8 +8,8 @@ async function editarusuario (usuario) {
    const caminho = path.join(__dirname, "../BANCODEDADOS/Dados_usuarios.json")
    const dados = fs.readFileSync(caminho, "utf-8")
    const usuarios = JSON.parse(dados)
-   const cpfAntigonormalizado = usuario.cpfOriginal.replace(/\D/g, "")
-   const cpfNovoDigitadonormalizado = usuario.cpf.replace(/\D/g, "") // 
+   const cpfAntigonormalizado = usuario.cpfOriginal // Já chega normalizado neste arquivo, por conta do server.js
+   const cpfNovoDigitadonormalizado = usuario.cpf // Já chega normalizado neste arquivo, por conta do server.js
 
    let index = -1
 
@@ -20,13 +20,20 @@ async function editarusuario (usuario) {
       }
    }
 
-   if (index === -1) {
+    // Verifica se algum dado foi alterado em relação ao que está salvo no banco
+    const usuarioAtual = usuarios[index]
+    const nenhumaAlteracao =
+        usuarioAtual.nomecompleto === usuario.nomecompleto &&
+        usuarioAtual.email        === usuario.email        &&
+        usuarioAtual.cpf          === cpfNovoDigitadonormalizado &&
+        usuarioAtual.cep          === usuario.cep
+
+    if (nenhumaAlteracao) {
         return {
             valido: false,
-            mensagem: "Usuário não encontrado"
+            mensagem: "Nenhuma alteração foi feita nos dados do usuário"
         }
     }
-
 
     // Atualizar/substituir os dados do usuário
     usuarios[index].nomecompleto = usuario.nomecompleto
@@ -54,4 +61,4 @@ async function editarusuario (usuario) {
     }
 }
 
-module.exports =  editarusuario
+module.exports = editarusuario
