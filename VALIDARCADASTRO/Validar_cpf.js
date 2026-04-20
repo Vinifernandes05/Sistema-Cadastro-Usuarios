@@ -2,7 +2,8 @@
 
 const lerbanco = require("../BANCODEDADOS/Ler_banco");
 
-function validarCPF (CPF) { // Função que permite salvar o CPF somente se tiver 11 digitos númericos seguidos, ou seguindo essa formatação: XXX.XXX.XXX-XX
+// Função que permite salvar o CPF somente se tiver 11 digitos númericos seguidos, ou seguindo essa formatação: XXX.XXX.XXX-XX
+function validarCPF (CPF) { 
 const cpfnormalizado = CPF.trim();
     
     if (cpfnormalizado === "") { 
@@ -25,7 +26,7 @@ const cpfnormalizado = CPF.trim();
                 }
 }
 
-
+// Função que verifica se o CPF digitado já foi usado anteriormente
 function cpfrepetido (CPF) {
 const usuarios = lerbanco()
 const cpfnormalizado = CPF.trim().replace(/\D/g, "")

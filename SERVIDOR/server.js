@@ -87,8 +87,8 @@ servidorweb.post("/salvarusuario", async function(pedido, resposta) { //
 servidorweb.put("/editarusuario", async function(pedido, resposta) { 
     const {cpfOriginal, nomecompleto, email, cpf, cep} = pedido.body
 
-    const cpfOriginalnormalizado = cpfOriginal.trim().replace(/\D/g, "")
-    const cpfnormalizado = cpf.trim().replace(/\D/g, "")
+    const cpfAntigonormalizado = cpfOriginal.trim().replace(/\D/g, "")
+    const cpfNovoDigitadonormalizado = cpf.trim().replace(/\D/g, "")
     const cepnormalizado = cep.trim().replace(/\D/g, "")
 
     const nomenormalizado = nomecompleto.trim().replace(/\s+/g, " ")
@@ -104,7 +104,7 @@ servidorweb.put("/editarusuario", async function(pedido, resposta) {
         return resposta.status(400).json(resultadoEmailFormato)
     }
 
-    const resultadoCPFFormato = validarcpf.validarCPF(cpfnormalizado)
+    const resultadoCPFFormato = validarcpf.validarCPF(cpfNovoDigitadonormalizado)
     if (!resultadoCPFFormato.valido) {
         return resposta.status(400).json(resultadoCPFFormato)
     }
@@ -116,10 +116,10 @@ servidorweb.put("/editarusuario", async function(pedido, resposta) {
 
     // Cria novo objeto "usuario" com os dados editados, para passar para a função de edição.
     const usuario = {
-        cpfOriginal: cpfOriginalnormalizado,
+        cpfOriginal: cpfAntigonormalizado,
         nomecompleto: nomenormalizado,
         email: emailnormalizado,
-        cpf: cpfnormalizado,
+        cpf: cpfNovoDigitadonormalizado,
         cep: cepnormalizado
     }
 

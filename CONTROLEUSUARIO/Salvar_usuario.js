@@ -5,7 +5,8 @@ const path = require("path");
 const lerbanco = require("../BANCODEDADOS/Ler_banco"); // Importa a função "lerbanco()" da pasta "BANCODEDADOS", do arquivo "Ler_banco"
 const buscarcep = require ("../BUSCARCEP/Buscar_cep"); // Importa a função "buscarcep()" da pasta "BUSCARCEP", do arquivo "Buscar_cep"
 
-async function salvarusuario(usuario) { // Função para salvar o usuário em um arquivo JSON, e guardar os dados sem sobrescrever os dados antigos.
+// Função para salvar o usuário em um arquivo JSON, e guardar os dados sem sobrescrever os dados antigos.
+async function salvarusuario(usuario) { 
       const usuarios = lerbanco()
       const dadoscep = await buscarcep(usuario.cep)
 

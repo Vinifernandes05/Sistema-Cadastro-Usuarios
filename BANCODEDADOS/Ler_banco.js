@@ -3,7 +3,8 @@
 const fs = require("fs"); // Importa o módulo de sistema de arquivos.
 const path = require("path"); // 
 
-function lerbanco() { // Função para ler o arquivo "Dados_usuarios.js" e o seu conteúdo.
+// Função para ler o arquivo "Dados_usuarios.js" e o seu conteúdo.
+function lerbanco() { 
 const caminho = path.join(__dirname, "Dados_usuarios.json");
     let usuarios = [] 
         if(!fs.existsSync(caminho)) {

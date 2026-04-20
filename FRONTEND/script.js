@@ -96,7 +96,6 @@ async function mostrarEditar () {
 
     const dados = await resposta.json()
     
-
   if (!dados.valido) {
         app.innerHTML += `<p> ${dados.mensagem} </p>`
         return
@@ -169,12 +168,12 @@ async function salvaralteracaoedicao (cpfOriginal) {
     const nomecompleto = document.getElementById("nomecompleto").value
     const email = document.getElementById("email").value
     const cep = document.getElementById("cep").value.replace(/\D/g, "")
-    const cpfNovo = document.getElementById("cpf").value.replace(/\D/g, "")
+    const cpfNovoDigitado = document.getElementById("cpf").value.replace(/\D/g, "")
 
     const resposta = await fetch("/editarusuario", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify ({ cpfOriginal, nomecompleto, email, cpf: cpfNovo, cep })
+        body: JSON.stringify ({ cpfOriginal, nomecompleto, email, cpf: cpfNovoDigitado, cep })
     })
 
     const dados = await resposta.json()
@@ -229,7 +228,6 @@ async function mostrarExcluir () {
      }
      )
     
-
      const dados = await resposta.json()
 
      if(!dados.valido) {

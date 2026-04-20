@@ -2,7 +2,8 @@
 
 const lerbanco = require("../BANCODEDADOS/Ler_banco");
 
-function emailincorreto (email) { // Função que NÃO permite que o campo "E-mail" fique com espaços em branco/ENTER.
+// Função que NÃO permite que o campo "E-mail" fique com espaços em branco/ENTER.
+function emailincorreto (email) { 
    const emailnormalizado = email.trim().toLowerCase();
 
       if (emailnormalizado === "") { 
@@ -25,8 +26,8 @@ function emailincorreto (email) { // Função que NÃO permite que o campo "E-ma
             }
 }
 
-
-function emailrepetido (email) { // Função que NÃO permite salvar um mesmo e-mail que já está inserido no sistema.
+// Função que NÃO permite salvar um mesmo e-mail que já está inserido no sistema.
+function emailrepetido (email) {
    const usuarios = lerbanco() // Declara usuários e chama a função de "lerbanco" para realizar a leitura do arquivo do banco de dados.
    const emailnormalizado = email.trim().toLowerCase();
 
