@@ -27,14 +27,19 @@ const cpfnormalizado = CPF.trim();
 }
 
 // Função que verifica se o CPF digitado já foi usado anteriormente
-function cpfrepetido (CPF) {
+function cpfrepetido (CPF, cpfIgnorar = null) {
 const usuarios = lerbanco()
 const cpfnormalizado = CPF.trim().replace(/\D/g, "")
 
     for (let i = 0; i < usuarios.length; i++) {
-    const cpfbanco = usuarios[i].cpf.trim().replace(/\D/g, "")
 
-    if (cpfbanco === cpfnormalizado) {
+    const cpfBancoNormalizado = usuarios[i].cpf.trim().replace(/\D/g, "")
+
+      if (cpfIgnorar && cpfBancoNormalizado === cpfIgnorar) { // Ignora o próprio usuário, evitando erro de "CPF já cadastrado" na edição de dados.
+         continue
+      }
+
+    if (cpfBancoNormalizado === cpfnormalizado) {
         return {
             valido: false,
             mensagem: "CPF já cadastrado."

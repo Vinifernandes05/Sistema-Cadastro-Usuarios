@@ -19,9 +19,10 @@ function excluirusuario (cpf) {
     let indice = -1
 
     for (let i = 0; i < usuarios.length; i++) {
-        const cpfbancoNormalizado = usuarios[i].cpf.trim().replace(/\D/g, "") // Normaliza o CPF já cadastrado no banco, no arquivo JSON.
 
-        if (cpfbancoNormalizado === cpfnormalizado) { // Compara se o CPF do usuário do banco é o mesmo que o do CPF que foi digitado
+        const cpfBancoNormalizado = usuarios[i].cpf.trim().replace(/\D/g, "") // Normaliza o CPF já cadastrado no banco, no arquivo JSON.
+
+        if (cpfBancoNormalizado === cpfnormalizado) { // Compara se o CPF do usuário do banco é o mesmo que o do CPF que foi digitado
             indice = i // Se realmente é, guarda a posição do usuário
             break
         }

@@ -20,21 +20,6 @@ async function editarusuario (usuario) {
       }
    }
 
-    // Verifica se algum dado foi alterado em relação ao que está salvo no banco
-    const usuarioAtual = usuarios[index]
-    const nenhumaAlteracao =
-        usuarioAtual.nomecompleto === usuario.nomecompleto &&
-        usuarioAtual.email        === usuario.email        &&
-        usuarioAtual.cpf          === cpfNovoDigitadonormalizado &&
-        usuarioAtual.cep          === usuario.cep
-
-    if (nenhumaAlteracao) {
-        return {
-            valido: false,
-            mensagem: "Nenhuma alteração foi feita nos dados do usuário"
-        }
-    }
-
     // Atualizar/substituir os dados do usuário
     usuarios[index].nomecompleto = usuario.nomecompleto
     usuarios[index].email = usuario.email

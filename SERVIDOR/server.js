@@ -88,17 +88,10 @@ servidorweb.put("/editarusuario", async function(pedido, resposta) {
     
     const cpfAntigonormalizado = cpfOriginal.trim().replace(/\D/g, "")
     const cpfNovoDigitadonormalizado = cpf.trim().replace(/\D/g, "")
-    const resultadoCPFRepetido = validarcpf.cpfrepetido(cpfNovoDigitadonormalizado)
 
     const cepnormalizado = cep.trim().replace(/\D/g, "")
     const nomenormalizado = nomecompleto.trim().replace(/\s+/g, " ")
     const emailnormalizado = email.trim().toLowerCase()
-
-    if (cpfAntigonormalizado !== cpfNovoDigitadonormalizado) {
-        if (!resultadoCPFRepetido.valido) {
-            return resposta.status(400).json(resultadoCPFRepetido)
-        }   
-    }
 
     const resultadoNome = validarnome(nomenormalizado)
     if (!resultadoNome.valido) {
@@ -108,24 +101,6 @@ servidorweb.put("/editarusuario", async function(pedido, resposta) {
     const resultadoEmailFormato = validaremail.emailincorreto(emailnormalizado)
     if (!resultadoEmailFormato.valido) {
         return resposta.status(400).json(resultadoEmailFormato)
-    }
-
-    // Verifica email repetido apenas se o email foi alterado em relação ao que está salvo no banco
-    const usuariosdoBanco = listarusuarios()
-    let emailAtualNoBanco = ""
-
-    for (let i = 0; i < usuariosdoBanco.length; i++) {
-        if (usuariosdoBanco[i].cpf === cpfAntigonormalizado) {
-            emailAtualNoBanco = usuariosdoBanco[i].email
-            break
-        }
-    }
-
-    if (emailAtualNoBanco !== emailnormalizado) {
-        const resultadoEmailRepetido = validaremail.emailrepetido(emailnormalizado)
-        if (!resultadoEmailRepetido.valido) {
-            return resposta.status(400).json(resultadoEmailRepetido)
-        }
     }
 
     const resultadoCPFFormato = validarcpf.validarCPF(cpfNovoDigitadonormalizado)
@@ -138,7 +113,42 @@ servidorweb.put("/editarusuario", async function(pedido, resposta) {
         return resposta.status(400).json(resultadoCEP)
     }
 
-    // Cria novo objeto "usuario" com os dados editados, para passar para a função de edição.
+    // Busca os dados atuais do usuário no banco para comparações
+    const usuariosdoBanco = listarusuarios().dados
+    let emailAtualNoBanco = ""
+    let cpfAtualNoBanco = ""
+
+    for (let i = 0; i < usuariosdoBanco.length; i++) {
+        if (usuariosdoBanco[i].cpf === cpfAntigonormalizado) {
+            emailAtualNoBanco = usuariosdoBanco[i].email
+            cpfAtualNoBanco = usuariosdoBanco[i].cpf
+            break
+        }
+    }
+
+    // Verifica email duplicado somente se o email foi alterado, ignorando o próprio usuário
+    if (emailAtualNoBanco !== emailnormalizado) {
+        const resultadoEmailRepetido = validaremail.emailrepetido(
+            emailnormalizado,
+            cpfAntigonormalizado
+        )
+        if (!resultadoEmailRepetido.valido) {
+            return resposta.status(400).json(resultadoEmailRepetido)
+        }
+    }
+
+    // Verifica CPF duplicado somente se o CPF foi alterado, ignorando o próprio usuário
+    if (cpfAtualNoBanco !== cpfNovoDigitadonormalizado) {
+        const resultadoCPFRepetido = validarcpf.cpfrepetido(
+            cpfNovoDigitadonormalizado,
+            cpfAntigonormalizado
+        )
+        if (!resultadoCPFRepetido.valido) {
+            return resposta.status(400).json(resultadoCPFRepetido)
+        }
+    }
+
+    // Cria novo objeto "usuario" com os dados editados
     const usuario = {
         cpfOriginal: cpfAntigonormalizado,
         nomecompleto: nomenormalizado,
@@ -147,7 +157,6 @@ servidorweb.put("/editarusuario", async function(pedido, resposta) {
         cep: cepnormalizado
     }
 
-    // Chama a função de edição, passando o objeto "usuario" com os dados editados.
     const resultadoEditar = await editarusuario(usuario)
 
     if (!resultadoEditar.valido) {

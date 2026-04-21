@@ -27,11 +27,18 @@ function emailincorreto (email) {
 }
 
 // Função que NÃO permite salvar um mesmo e-mail que já está inserido no sistema.
-function emailrepetido (email) {
+function emailrepetido (email, cpfIgnorar = null) {
    const usuarios = lerbanco() // Declara usuários e chama a função de "lerbanco" para realizar a leitura do arquivo do banco de dados.
    const emailnormalizado = email.trim().toLowerCase();
 
-      for (let i = 0; i < usuarios.length; i++) {  
+      for (let i = 0; i < usuarios.length; i++) { 
+
+         const cpfBancoNormalizado = usuarios[i].cpf.trim().replace(/\D/g, "")
+          
+         if (cpfIgnorar && cpfBancoNormalizado === cpfIgnorar) { // Ignora o próprio usuário, evitando erro de "Email já cadastrado" na edição de dados.
+            continue
+         }
+
          if (usuarios[i].email.trim().toLowerCase() === emailnormalizado) { 
             return {
                valido: false,
