@@ -120,6 +120,8 @@ async function mostrarEditar () {
 }
 
 
+let cpfAtual = "" // Armazena o CPF original do usuário que está sendo editado no momento
+
 async function botaoEditar (index) {
 
     const resposta = await fetch ("/listarusuarios", {
@@ -129,6 +131,8 @@ async function botaoEditar (index) {
 
     const dados = await resposta.json()
     const usuario = dados.dados[index]
+
+    cpfAtual = usuario.cpf // Guarda o CPF atual do usuário ao abrir o formulário
 
     app.innerHTML = `<h2> Edição do Usuário </h2>
 
@@ -158,13 +162,12 @@ async function botaoEditar (index) {
     .getElementById("formEditar")
     .addEventListener("submit", function(event) {
         event.preventDefault()
-        salvaralteracaoedicao(usuario.cpf)
+        salvaralteracaoedicao()
     })
-
 }
 
 
-async function salvaralteracaoedicao (cpfOriginal) {
+async function salvaralteracaoedicao () {
     const nomecompleto = document.getElementById("nomecompleto").value
     const email = document.getElementById("email").value
     const cep = document.getElementById("cep").value.replace(/\D/g, "")
@@ -173,12 +176,17 @@ async function salvaralteracaoedicao (cpfOriginal) {
     const resposta = await fetch("/editarusuario", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify ({ cpfOriginal, nomecompleto, email, cpf: cpfNovoDigitado, cep })
+        body: JSON.stringify ({ cpfOriginal: cpfAtual, nomecompleto, email, cpf: cpfNovoDigitado, cep })
     })
 
     const dados = await resposta.json()
 
     document.getElementById("mensagem").innerHTML = dados.mensagem
+
+    // Atualiza o cpfAtual para o novo CPF após salvamento bem-sucedido
+    if (dados.valido) {
+        cpfAtual = cpfNovoDigitado
+    }
 }
 
 // Tela de Exclusão dos Usuários

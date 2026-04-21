@@ -20,6 +20,33 @@ async function editarusuario (usuario) {
       }
    }
 
+    // Verifica se algum dado foi alterado em relação ao que está salvo no banco
+    const usuarioAtual = usuarios[index]
+
+    console.log("=== COMPARAÇÃO ===")
+    console.log("Nome banco:  |" + usuarioAtual.nomecompleto + "|")
+    console.log("Nome novo:   |" + usuario.nomecompleto + "|")
+    console.log("Email banco: |" + usuarioAtual.email + "|")
+    console.log("Email novo:  |" + usuario.email + "|")
+    console.log("CPF banco:   |" + usuarioAtual.cpf + "|")
+    console.log("CPF novo:    |" + cpfNovoDigitadonormalizado + "|")
+    console.log("CEP banco:   |" + usuarioAtual.cep + "|")
+    console.log("CEP novo:    |" + usuario.cep + "|")
+    console.log("==================")
+    
+    const nenhumaAlteracao =
+        usuarioAtual.nomecompleto === usuario.nomecompleto &&
+        usuarioAtual.email        === usuario.email        &&
+        usuarioAtual.cpf          === cpfNovoDigitadonormalizado &&
+        usuarioAtual.cep          === usuario.cep
+
+    if (nenhumaAlteracao) {
+        return {
+            valido: false,
+            mensagem: "Necessário alterar algum dado para Salvar"
+        }
+    }
+
     // Atualizar/substituir os dados do usuário
     usuarios[index].nomecompleto = usuario.nomecompleto
     usuarios[index].email = usuario.email
