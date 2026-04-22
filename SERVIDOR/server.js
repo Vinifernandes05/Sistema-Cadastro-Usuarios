@@ -1,32 +1,34 @@
 // Arquivo responsável pelo backend principal da aplicação, inicializa o servidor web com Express, serve os arquivos e recebe requisições do frontend, responde com JSON. 
 
-const express = require("express") // Importa "express", Framework que cria o servidor web.
-const path = require("path") // Importa "path", Biblioteca para trabalhar com caminhos de pastas/arquivos.
+const express = require("express") 
+const path = require("path") 
 
-const listarusuarios = require("../CONTROLEUSUARIO/Listar_usuarios")
-const salvarusuario = require("../CONTROLEUSUARIO/Salvar_usuario")
-const excluirusuario = require("../CONTROLEUSUARIO/Excluir_usuario")
-const editarusuario  = require("../CONTROLEUSUARIO/Editar_dados_usuario")
+const listarusuarios = require("../CONTROLEUSUARIO/Listar_usuarios") // Importa a função "listarusuarios()" da pasta "CONTROLEUSUARIO", do arquivo "Listar_usuarios" para listar os usuários cadastrados, mostrando o Nome Completo, E-mail, Cidade e Estado.
+const salvarusuario = require("../CONTROLEUSUARIO/Salvar_usuario") // Importa a função "salvarusuario()" da pasta "CONTROLEUSUARIO", do arquivo "Salvar_usuario" para salvar o cadastro do usuário no arquivo JSON, em formato de array de objetos.
+const excluirusuario = require("../CONTROLEUSUARIO/Excluir_usuario") // Importa a função "excluirusuario()" da pasta "CONTROLEUSUARIO", do arquivo "Excluir_usuario" para excluir o usuário do arquivo JSON, a partir do CPF.
+const editarusuario  = require("../CONTROLEUSUARIO/Editar_dados_usuario") // Importa a função "editarusuario()" da pasta "CONTROLEUSUARIO", do arquivo "Editar_dados_usuario" para editar os dados do usuário no arquivo JSON, a partir do CPF.
 
-const validarcep = require("../VALIDARCADASTRO/Validar_cep")
-const validarcpf = require("../VALIDARCADASTRO/Validar_cpf")
-const validaremail = require("../VALIDARCADASTRO/Validar_email")
-const validarnome = require("../VALIDARCADASTRO/Validar_nomecompleto")
+const validarcep = require("../VALIDARCADASTRO/Validar_cep") // Importa a função "validarcep()" da pasta "VALIDARCADASTRO", do arquivo "Validar_cep" para validar o CEP digitado pelo usuário, verificando se o formato está correto e se o CEP existe, antes de salvar ou editar os dados do usuário.
+const validarcpf = require("../VALIDARCADASTRO/Validar_cpf") // Importa a função "validarcpf()" da pasta "VALIDARCADASTRO", do arquivo "Validar_cpf" para validar o CPF digitado pelo usuário, verificando se o formato está correto, se é um CPF válido e se já existe no banco de dados, antes de salvar ou editar os dados do usuário.
+const validaremail = require("../VALIDARCADASTRO/Validar_email") // Importa a função "validaremail()" da pasta "VALIDARCADASTRO", do arquivo "Validar_email" para validar o E-mail digitado pelo usuário, verificando se o formato está correto e se já existe no banco de dados, antes de salvar ou editar os dados do usuário.
+const validarnome = require("../VALIDARCADASTRO/Validar_nomecompleto") // Importa a função "validarnome()" da pasta "VALIDARCADASTRO", do arquivo "Validar_nomecompleto" para validar o Nome Completo digitado pelo usuário, verificando se o formato está correto, antes de salvar ou editar os dados do usuário.
 
-const PORT = process.env.PORT || 3000;
-const servidorweb = express()
+const PORT = process.env.PORT || 3000; 
+const servidorweb = express() 
 
 servidorweb.use(express.static(path.join(__dirname, "../FRONTEND")))
 servidorweb.use(express.json())
 servidorweb.use(express.urlencoded({ extended: true }))
 
 
+// Rota para listar os usuários cadastrados, mostrando o Nome Completo, E-mail, Cidade e Estado.
 servidorweb.get("/listarusuarios", function(pedido, resposta) { // 
     const arrayusuarios = listarusuarios()
     resposta.json(arrayusuarios)
 })
 
 
+// Rota para salvar o cadastro do usuário, recebe os dados do usuário do frontend, valida os dados, chama a função de salvamento e retorna o resultado.
 servidorweb.post("/salvarusuario", async function(pedido, resposta) { // 
     const usuario = pedido.body
     console.log("Dados recebidos:", usuario) // Aparece no terminal
@@ -83,6 +85,7 @@ servidorweb.post("/salvarusuario", async function(pedido, resposta) { //
 })
 
 
+// Rota para editar os dados do usuário, recebe os dados do usuário editados do frontend, valida os dados, chama a função de edição e retorna o resultado.
 servidorweb.put("/editarusuario", async function(pedido, resposta) { 
     const {cpfOriginal, nomecompleto, email, cpf, cep} = pedido.body
     
@@ -167,6 +170,7 @@ servidorweb.put("/editarusuario", async function(pedido, resposta) {
 })
 
 
+// Rota para exclusão do usuário, recebe o CPF do usuário a ser excluído, chama a função de exclusão e retorna o resultado.
 servidorweb.delete("/excluirusuario", function (pedido, resposta) { //
     const cpf = pedido.body.cpf
 
@@ -180,6 +184,7 @@ servidorweb.delete("/excluirusuario", function (pedido, resposta) { //
 )
 
 
+// Inicia o servidor web na porta definida, exibindo uma mensagem no console para confirmar que o servidor está rodando.
 servidorweb.listen(PORT, function() {
     console.log("Servidor rodando na porta " + PORT)
 })

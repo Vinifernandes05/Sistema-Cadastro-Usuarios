@@ -1,15 +1,15 @@
 // Arquivo responsável pela criação da tela dinâmica da página, receber dados do usuário e enviar para a rota /salvarusuario, além de enviar mensagens para o front.
 
-const app = document.getElementById("app")
-const menu = document.getElementById("menu")
+const app = document.getElementById("app") // Encontra a div com id "app" no HTML, para mostrar o conteúdo dinâmico dentro dela.
+const menu = document.getElementById("menu") // Encontra a div com id "menu" no HTML, para mostrar o menu de opções dentro dela.
 
-
+// Função para voltar para a tela inicial, limpando o conteúdo da div "app" e mostrando apenas o menu de opções.
 function botaoVoltar() { 
     app.innerHTML = ""
 }
 
 
-// Tela de Cadastro de Usuário
+// Função para mostrar a tela de cadastro do usuário. 
 function mostrarCadastro () {
     app.innerHTML = `
     <h2>Tela de Cadastro de Usuário</h2>
@@ -37,11 +37,11 @@ function mostrarCadastro () {
     `
 
     document
-        .getElementById("formCadastro") // Encontra o formulário no HTML.
-        .addEventListener("submit", enviarFormulario) // Quando enviado, chama a função "enviarFormulario".
+        .getElementById("formCadastro") // Encontra o formulário de cadastro no HTML.
+        .addEventListener("submit", enviarFormulario) // Adiciona um evento de "submit" no formulário, para que quando o usuário clicar no botão "Cadastrar", a função "enviarFormulario" seja chamada e os dados sejam enviados para o backend.
 }
 
-// Tela de Listagem dos Usuários
+// Função para mostrar a tela de listagem dos usuários.
 async function mostrarLista () {
     app.innerHTML = `<h2>Tela de Listagem dos Usuários</h2>`
     
@@ -50,7 +50,7 @@ async function mostrarLista () {
         headers: {"Content-Type": "application/json"} // Quando é enviado dados no body em formato JSON.
     })
 
-    const dados = await resposta.json()
+    const dados = await resposta.json() // Converte a resposta do backend, que é uma string JSON, em um objeto JS para facilitar o acesso aos dados.
 
     if (!dados.valido) {
         app.innerHTML += `<p> ${dados.mensagem} </p>`
@@ -85,7 +85,7 @@ async function mostrarLista () {
         app.innerHTML += `<button onclick="botaoVoltar()">Voltar</button>`
 }
 
-// Tela de Edição dos Usuários
+// Função para mostrar a tela de edição dos usuários.
 async function mostrarEditar () {
     app.innerHTML = `<h2>Tela de Edição do Usuário</h2>`
 
@@ -122,6 +122,7 @@ async function mostrarEditar () {
 
 let cpfAtual = "" // Armazena o CPF original do usuário que está sendo editado no momento
 
+// Função para mostrar a tela de edição do usuário.
 async function botaoEditar (index) {
 
     const resposta = await fetch ("/listarusuarios", {
@@ -167,6 +168,7 @@ async function botaoEditar (index) {
 }
 
 
+// Função para salvar as alterações feitas na edição do usuário.
 async function salvaralteracaoedicao () {
     const nomecompleto = document.getElementById("nomecompleto").value
     const email = document.getElementById("email").value
@@ -189,7 +191,7 @@ async function salvaralteracaoedicao () {
     }
 }
 
-// Tela de Exclusão dos Usuários
+// Função para mostrar a tela de exclusão dos usuários.
 async function mostrarExcluir () {
     app.innerHTML = `<h2>Tela de Exclusão do Usuário</h2>`
 
@@ -222,6 +224,7 @@ async function mostrarExcluir () {
 }
 
 
+// Função para excluir o usuário, recebendo o CPF e o nome do usuário para confirmação da exclusão.
  async function botaoExcluir (cpf, nomedousuario) {
     const confirmarexclusao = confirm(`Tem certeza que deseja excluir ${nomedousuario}?`)
         
@@ -248,6 +251,7 @@ async function mostrarExcluir () {
 }
 
 
+// Função para mostrar ou ocultar os detalhes do usuário na tela de listagem, a partir do clique no botão "Visualizar mais detalhes".
 function botaoMostrarDetalhes (index, botao) {
     const divDetalhes = document.getElementById(`detalhes${index}`)
 
@@ -263,6 +267,7 @@ function botaoMostrarDetalhes (index, botao) {
 }
 
 
+// Função para enviar os dados do formulário de cadastro do usuário para a rota "/salvarusuario" do backend.
 async function enviarFormulario (event) {
     event.preventDefault() // Impede o recarregamento de página no HTML, para que o JS asssuma o controle.
 
@@ -280,5 +285,3 @@ async function enviarFormulario (event) {
     const dados = await resposta.json()
     document.getElementById("mensagem").innerHTML = dados.mensagem
 }
-
-

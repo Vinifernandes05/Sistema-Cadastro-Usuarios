@@ -16,4 +16,4 @@ function formatarCEP (cep) {
         return cep
 }
 
-module.exports = {formatarCEP, formatarCPF}
+module.exports = {formatarCEP, formatarCPF} // Exporta as funções "formatarCEP" e "formatarCPF" para serem utilizadas no frontend.

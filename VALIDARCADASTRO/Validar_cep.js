@@ -1,10 +1,10 @@
 // Arquivo responsável pela validação da formatação do CEP.
 
-// Função que permite salvar o CEP somente se tiver 8 digitos numericos seguidos, ou se tiver a seguinte formatação: XXXXX-XXX
+// Função para permitir salvar o CEP somente se tiver 8 digitos numericos seguidos, ou se tiver a seguinte formatação: XXXXX-XXX
 function cepincorreto (CEP) {
 const cepnormalizado = CEP.trim()
    
-if (cepnormalizado === "") { 
+if (cepnormalizado === "") { // Verifica se o CEP é uma string vazia, ou seja, se o usuário não digitou nada ou apenas espaços em branco.
          return {
             valido: false, 
             mensagem: "CEP não pode estar vazio."
@@ -24,4 +24,4 @@ const validarformatocep = (/^(\d{5}-\d{3}|\d{8})$/.test(cepnormalizado)) // Perm
          }
 }
 
-module.exports = cepincorreto
+module.exports = cepincorreto // Exporta a função "cepincorreto()".
