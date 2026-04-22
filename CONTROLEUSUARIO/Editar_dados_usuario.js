@@ -43,7 +43,7 @@ async function editarusuario (usuario) {
     if (nenhumaAlteracao) {
         return {
             valido: false,
-            mensagem: "Necessário alterar algum dado para Salvar"
+            mensagem: "Necessário alterar algum dado para Salvar Alterações"
         }
     }
 
