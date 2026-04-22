@@ -1,11 +1,11 @@
 // Arquivo responsável pela exclusão do usuário.
 
-const lerbanco = require ("../BANCODEDADOS/Ler_banco"); // Importa a função "lerbanco()", do arquivo "Ler_banco" e da pasta "BANCODEDADOS".
-const salvarbanco = require ("../BANCODEDADOS/Salvar_banco"); // Importa a função "salvarbanco()", do arquivo "Salvar_banco" e da pasta "BANCODEDADOS".
+const lerbanco = require ("../BANCODEDADOS/Ler_banco"); // Importa a função "lerbanco()", do arquivo "Ler_banco" e da pasta "BANCODEDADOS" para ler o banco de dados e obter o array de usuários.
+const salvarbanco = require ("../BANCODEDADOS/Salvar_banco"); // Importa a função "salvarbanco()", do arquivo "Salvar_banco" e da pasta "BANCODEDADOS" para salvar o array de usuários atualizado no banco de dados, após a exclusão do usuário.
 
 // Função responsável pela exclusão do usuário, a partir do CPF informado.
 function excluirusuario (cpf) {
-    const usuarios = lerbanco();
+    const usuarios = lerbanco(); 
 
     if (usuarios.length === 0) {
         return {
@@ -14,7 +14,7 @@ function excluirusuario (cpf) {
         }
     }
     
-    const cpfnormalizado = cpf.trim().replace(/\D/g, "") // Normaliza o CPF que o usuário acabou de digitar
+    const cpfnormalizado = cpf.trim().replace(/\D/g, "") // Normaliza o CPF que o usuário acabou de digitar.
 
     let indice = -1
 
@@ -22,7 +22,7 @@ function excluirusuario (cpf) {
 
         const cpfBancoNormalizado = usuarios[i].cpf.trim().replace(/\D/g, "") // Normaliza o CPF já cadastrado no banco, no arquivo JSON.
 
-        if (cpfBancoNormalizado === cpfnormalizado) { // Compara se o CPF do usuário do banco é o mesmo que o do CPF que foi digitado
+        if (cpfBancoNormalizado === cpfnormalizado) { // Compara o CPF que o usuário acabou de digitar (normalizado) com o CPF de cada usuário do banco (normalizado).
             indice = i // Se realmente é, guarda a posição do usuário
             break
         }
@@ -35,9 +35,9 @@ function excluirusuario (cpf) {
         }
     }
 
-    const nomeUsuarioRemovido = usuarios[indice].nomecompleto // Seleciona o usuário excluido.
+    const nomeUsuarioRemovido = usuarios[indice].nomecompleto // Guarda o nome do usuário que será excluido.
     usuarios.splice(indice, 1) // Remove apenas o usuário do array.
-    salvarbanco(usuarios);
+    salvarbanco(usuarios); // Salva o array atualizado (com o usuário removido) no banco de dados, sobrescrevendo o arquivo JSON.
 
     return {
         valido: true,
@@ -45,4 +45,4 @@ function excluirusuario (cpf) {
     }
 }
 
-module.exports = excluirusuario;
+module.exports = excluirusuario; // Exporta a função "excluirusuario()".
