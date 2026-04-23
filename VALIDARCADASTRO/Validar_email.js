@@ -13,7 +13,7 @@ function emailincorreto (email) {
          }
       }
 
-   const validarformatoemail = (/^[A-Za-z0-9]+@(gmail|hotmail)\.com$/.test(emailnormalizado)) // Garante que se for digitado apenas letras e números no email antes do "@" e, logo após, tenha a formatação restritta a "@gmail.com" e "@hotmail.com".
+   const validarformatoemail = (/^[A-Za-z0-9]+@(gmail|hotmail|outlook|yahoo)\.com$/.test(emailnormalizado)) // Garante que se for digitado apenas letras e números no email antes do "@" e, logo após, tenha a formatação restrita a "@gmail.com","@hotmail.com", "@outlook.com" ou "@yahoo.com".
       
       if(!validarformatoemail) {  
          return {

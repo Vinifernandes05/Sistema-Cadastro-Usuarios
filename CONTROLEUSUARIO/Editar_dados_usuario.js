@@ -9,6 +9,7 @@ async function editarusuario (usuario) {
    const caminho = path.join(__dirname, "../BANCODEDADOS/Dados_usuarios.json")
    const dados = fs.readFileSync(caminho, "utf-8")
    const usuarios = JSON.parse(dados)
+
    const cpfAntigonormalizado = usuario.cpfOriginal // CPF que veio do frontend (que o usuário selecionou e quer editar), já normalizado no server.js.
    const cpfNovoDigitadonormalizado = usuario.cpf // CPF que veio do frontend (que o usuário digitou no campo CPF), já normalizado no server.js.
 
@@ -20,19 +21,26 @@ async function editarusuario (usuario) {
         break
       }
    }
+   
+   if (index === -1) { // Evita crash caso usuário não exista.
+      return {
+         valido: false,
+         mensagem: "Usuário não encontrado."
+      }
+   }
 
     const usuarioAtual = usuarios[index] // Dados atuais do usuário no banco, para comparação com os dados que vieram do frontend.
 
-    console.log("=== COMPARAÇÃO ===")
-    console.log("Nome banco:  |" + usuarioAtual.nomecompleto + "|")
-    console.log("Nome novo:   |" + usuario.nomecompleto + "|")
-    console.log("Email banco: |" + usuarioAtual.email + "|")
-    console.log("Email novo:  |" + usuario.email + "|")
-    console.log("CPF banco:   |" + usuarioAtual.cpf + "|")
-    console.log("CPF novo:    |" + cpfNovoDigitadonormalizado + "|")
-    console.log("CEP banco:   |" + usuarioAtual.cep + "|")
-    console.log("CEP novo:    |" + usuario.cep + "|")
-    console.log("==================")
+    // console.log("=== COMPARAÇÃO ===")
+    // console.log("Nome banco:  |" + usuarioAtual.nomecompleto + "|")
+    // console.log("Nome novo:   |" + usuario.nomecompleto + "|")
+    // console.log("Email banco: |" + usuarioAtual.email + "|")
+    // console.log("Email novo:  |" + usuario.email + "|")
+    // console.log("CPF banco:   |" + usuarioAtual.cpf + "|")
+    // console.log("CPF novo:    |" + cpfNovoDigitadonormalizado + "|")
+    // console.log("CEP banco:   |" + usuarioAtual.cep + "|")
+    // console.log("CEP novo:    |" + usuario.cep + "|")
+    // console.log("==================")
     
     const nenhumaAlteracao = // Compara os dados atuais do usuário no banco com os dados que vieram do frontend.
         usuarioAtual.nomecompleto === usuario.nomecompleto &&

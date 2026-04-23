@@ -54,7 +54,7 @@ servidorweb.post("/salvarusuario", async function(pedido, resposta) { //
         return resposta.status(400).json(resultadoEmailRepetido)
     }
 
-    const cpfnormalizado = cpf.trim()
+    const cpfnormalizado = cpf.trim().replace(/\D/g, "")
 
     const resultadoCPFFormato = validarcpf.validarCPF(cpfnormalizado)
     if (!resultadoCPFFormato.valido) {
@@ -68,7 +68,7 @@ servidorweb.post("/salvarusuario", async function(pedido, resposta) { //
 
     usuario.cpf = cpfnormalizado.replace(/\D/g, "") 
 
-    const cepnormalizado = cep.trim()
+    const cepnormalizado = cep.trim().replace(/\D/g, "")
 
     const resultadoCEP = validarcep(cepnormalizado)
     if (!resultadoCEP.valido) {
@@ -116,8 +116,14 @@ servidorweb.put("/editarusuario", async function(pedido, resposta) {
         return resposta.status(400).json(resultadoCEP)
     }
 
-    // Busca os dados atuais do usuário no banco para comparações
-    const usuariosdoBanco = listarusuarios().dados
+    // Confere se existe usuário no banco.
+    const resultadoLista = listarusuarios()
+    if (!resultadoLista.valido) {
+        return resposta.status(400).json(resultadoLista)
+    }
+
+    // Busca os dados atuais do usuário no banco para comparações.
+    const usuariosdoBanco = resultadoLista.dados
     let emailAtualNoBanco = ""
     let cpfAtualNoBanco = ""
 
