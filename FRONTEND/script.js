@@ -5,12 +5,14 @@ const menu = document.getElementById("menu") // Encontra a div com id "menu" no 
 
 // Função para voltar para a tela inicial, limpando o conteúdo da div "app" e mostrando apenas o menu de opções.
 function botaoVoltar() { 
+
     app.innerHTML = ""
 }
 
 
 // Função para mostrar a tela de cadastro do usuário. 
 function mostrarCadastro () {
+
     app.innerHTML = `
     <h2>Tela de Cadastro de Usuário</h2>
                 
@@ -43,6 +45,7 @@ function mostrarCadastro () {
 
 // Função para mostrar a tela de listagem dos usuários.
 async function mostrarLista () {
+
     app.innerHTML = `<h2>Tela de Listagem dos Usuários</h2>`
     
     const resposta = await fetch("/listarusuarios", {
@@ -87,6 +90,7 @@ async function mostrarLista () {
 
 // Função para mostrar a tela de edição dos usuários.
 async function mostrarEditar () {
+
     app.innerHTML = `<h2>Tela de Edição do Usuário</h2>`
 
     const resposta = await fetch ("/listarusuarios", {
@@ -170,6 +174,7 @@ async function botaoEditar (index) {
 
 // Função para salvar as alterações feitas na edição do usuário.
 async function salvaralteracaoedicao () {
+
     const nomecompleto = document.getElementById("nomecompleto").value
     const email = document.getElementById("email").value
     const cep = document.getElementById("cep").value.replace(/\D/g, "")
@@ -193,6 +198,7 @@ async function salvaralteracaoedicao () {
 
 // Função para mostrar a tela de exclusão dos usuários.
 async function mostrarExcluir () {
+
     app.innerHTML = `<h2>Tela de Exclusão do Usuário</h2>`
 
     const resposta = await fetch("/listarusuarios", {
@@ -225,34 +231,54 @@ async function mostrarExcluir () {
 
 
 // Função para excluir o usuário, recebendo o CPF e o nome do usuário para confirmação da exclusão.
- async function botaoExcluir (cpf, nomedousuario) {
-    const confirmarexclusao = confirm(`Tem certeza que deseja excluir ${nomedousuario}?`)
-        
-    if (!confirmarexclusao) {
-            return;
-        }
+async function botaoExcluir (cpf, nomedousuario) {
 
-        const resposta = await fetch ("/excluirusuario", {
-        method: "DELETE",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify ({cpf: cpf})
-     }
-     )
-    
-     const dados = await resposta.json()
+    app.innerHTML = `
+        <h2>Confirmação de Exclusão</h2>
 
-     if(!dados.valido) {
-        app.innerHTML += `<p> ${dados.mensagem} </p>`
-        return
-     }
+        <div class="card-usuario">
+            <h4>Tem certeza que deseja excluir o usuário abaixo?</h4>
 
-    alert(dados.mensagem)
-    mostrarExcluir() 
+            <p>Nome Completo: ${nomedousuario}</p>
+            <p>CPF: ${formatarCPF(cpf)}</p>
+
+            <button class="btn-excluir" onclick="confirmarExclusao('${cpf}')">
+                Confirmar Exclusão
+            </button>
+
+            <button type="button" onclick="mostrarExcluir()">
+                Cancelar
+            </button>
+        </div>
+    `
 }
 
+// Função para enviar a requisição de exclusão do usuário para a rota "/excluirusuario" do backend, recebendo o CPF do usuário a ser excluído.
+async function confirmarExclusao (cpf) {
+
+    const resposta = await fetch("/excluirusuario", {
+        method: "DELETE",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ cpf: cpf })
+    })
+
+    const dados = await resposta.json()
+
+    if (!dados.valido) {
+        app.innerHTML += `<p>${dados.mensagem}</p>`
+        return
+    }
+
+    app.innerHTML = `
+        <h2>Sucesso!</h2>
+        <p>${dados.mensagem}</p>
+        <button onclick="mostrarExcluir()">Voltar</button>
+    `
+}
 
 // Função para mostrar ou ocultar os detalhes do usuário na tela de listagem, a partir do clique no botão "Visualizar mais detalhes".
 function botaoMostrarDetalhes (index, botao) {
+
     const divDetalhes = document.getElementById(`detalhes${index}`)
 
         if (divDetalhes.style.display === "none") {
@@ -269,6 +295,7 @@ function botaoMostrarDetalhes (index, botao) {
 
 // Função para enviar os dados do formulário de cadastro do usuário para a rota "/salvarusuario" do backend.
 async function enviarFormulario (event) {
+
     event.preventDefault() // Impede o recarregamento de página no HTML, para que o JS asssuma o controle.
 
     const nomecompleto = document.getElementById("nomecompleto").value
