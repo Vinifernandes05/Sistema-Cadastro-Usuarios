@@ -30,8 +30,8 @@ function mostrarCadastro () {
         <label>CEP:</label>
         <input type="text" id="cep" placeholder="Campo Obrigatório">
 
-        <button type="button" onclick="botaoVoltar()">Voltar</button>
         <button type="submit">Cadastrar</button>
+        <button type="button" onclick="botaoVoltar()">Voltar</button>
 
     </form>
 
@@ -154,9 +154,10 @@ async function botaoEditar (index) {
 
                         <label> CEP: </label>
                         <input type="text" id="cep" value="${formatarCEP(usuario.cep)}">
-
-                            <button type="button" onclick="mostrarEditar()">Voltar</button>
-                            <button type="submit">Salvar Alterações</button>
+                        
+                        <button type="submit">Salvar Alterações</button>    
+                        <button type="button" onclick="mostrarEditar()">Voltar</button>
+                            
 
                     </form> 
 
