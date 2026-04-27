@@ -200,3 +200,84 @@ body {
     margin-bottom: 20px;
     text-align: left;
 }
+
+/* ===== STICKY FOOTER BASE ===== */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#app {
+    flex: 1; /* empurra o footer pra baixo */
+}
+
+
+/* ===== FIX DO ESPAÇO EMBAIXO ===== */
+body {
+    padding-bottom: 0; /* REMOVE o espaço extra */
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background-color: #f8f9fc; /* mais claro e discreto */
+    color: #444;
+    padding: 20px 10px;
+    text-align: center;
+    margin-top: 40px;
+
+    border-top: 1px solid #e0e6ed; /* linha sutil */
+}
+
+/* Nome */
+.footer-nome {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+/* Destaque no nome */
+.footer-nome strong {
+    color: #4a6cf7;
+    font-weight: 600;
+}
+
+/* Links */
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+/* Cada link */
+.footer-links a {
+    text-decoration: none;
+    color: #4a6cf7; /* mais visível */
+    font-size: 14px;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 6px 10px;
+    border-radius: 6px;
+
+    transition: all 0.2s ease;
+}
+
+/* Ícones */
+.footer-links i {
+    font-size: 15px;
+}
+
+/* Hover moderno */
+.footer-links a:hover {
+    background-color: #4a6cf7;
+    color: white;
+    transform: translateY(-2px);
+}
