@@ -15,6 +15,7 @@ Além disso, o projeto possui **integração com API externa** para busca autom�
 - Praticar desenvolvimento Full Stack
 - Implementar operações CRUD completas
 - Trabalhar com requisições HTTP (GET, POST, PUT, DELETE)
+- Trabahar com API externa
 - Manipular dados em formato JSON
 - Desenvolver interfaces dinâmicas com JavaScript
 - Organizar o projeto em camadas (Frontend, Backend, Validações, Banco)
@@ -51,11 +52,7 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 ✔️ Integração com API de CEP (preenchimento automático de endereço)  
 ✔️ Formatação automática de CPF e CEP  
 ✔️ Footer profissional com contatos pessoais  
-✔️ Validações de:
-- Nome completo  
-- Email  
-- CPF  
-- CEP (com busca automática)  
+✔️ Validações de: Nome completo, Email, CPF e CEP (com busca automática)  
 
 ---
 
