@@ -48,16 +48,14 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 ✔️ Listagem de usuários em formato de cards  
 ✔️ Edição de dados do usuário  
 ✔️ Exclusão com confirmação personalizada  
-✔️ Integração com API de CEP (preenchimento automático de endereço)
-✔️ Formatação automática de CPF e CEP
-
-✔️ Validação de:
-- Nome completo
-- Email
-- CPF
+✔️ Integração com API de CEP (preenchimento automático de endereço)  
+✔️ Formatação automática de CPF e CEP  
+✔️ Footer profissional com contatos pessoais  
+✔️ Validações de:
+- Nome completo  
+- Email  
+- CPF  
 - CEP (com busca automática)  
-
-✔️ Footer profissional com contatos pessoais
 
 ---
 
