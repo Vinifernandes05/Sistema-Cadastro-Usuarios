@@ -77,7 +77,7 @@ async function editarusuario (usuario) {
 
     return {
         valido: true,
-        mensagem: "Usuário atualizado com sucesso"
+        mensagem: "Usuário atualizado com sucesso!"
     }
 }
 

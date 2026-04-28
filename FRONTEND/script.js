@@ -88,6 +88,24 @@ async function mostrarLista () {
         app.innerHTML += `<button onclick="botaoVoltar()">Voltar</button>`
 }
 
+
+// Função para mostrar ou ocultar os detalhes do usuário na tela de listagem, a partir do clique no botão "Visualizar mais detalhes".
+function botaoMostrarDetalhes (index, botao) {
+
+    const divDetalhes = document.getElementById(`detalhes${index}`)
+
+        if (divDetalhes.style.display === "none") {
+
+            divDetalhes.style.display = "block"
+            botao.textContent = "Ocultar detalhes"
+
+        } else {
+            divDetalhes.style.display = "none"
+            botao.textContent = "Visualizar mais detalhes"
+        }
+}
+
+
 // Função para mostrar a tela de edição dos usuários.
 async function mostrarEditar () {
 
@@ -275,22 +293,6 @@ async function confirmarExclusao (cpf) {
         <p>${dados.mensagem}</p>
         <button onclick="mostrarExcluir()">Voltar</button>
     `
-}
-
-// Função para mostrar ou ocultar os detalhes do usuário na tela de listagem, a partir do clique no botão "Visualizar mais detalhes".
-function botaoMostrarDetalhes (index, botao) {
-
-    const divDetalhes = document.getElementById(`detalhes${index}`)
-
-        if (divDetalhes.style.display === "none") {
-
-            divDetalhes.style.display = "block"
-            botao.textContent = "Ocultar detalhes"
-
-        } else {
-            divDetalhes.style.display = "none"
-            botao.textContent = "Visualizar mais detalhes"
-        }
 }
 
 
