@@ -8,7 +8,7 @@ A aplicação foi construída com foco em **organização de código, separaçã
 
 Além disso, o projeto possui **integração com API externa** para busca automática de endereço via CEP, proporcionando uma melhor experiência ao usuário.
 
-🔗 **Link do Projeto:**   https://projeto-alura-marcas-esportivas.vercel.app/
+🔗 **Link do Projeto:**   https://sistema-cadastro-usuarios.onrender.com/
 
 ---
 
