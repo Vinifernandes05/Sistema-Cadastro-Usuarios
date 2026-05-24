@@ -65,32 +65,32 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 SISTEMA-CADASTRO-USUARIOS
 │
 ├── BANCODEDADOS
-│ ├── Dados_usuarios.json # Banco de dados (JSON)
-│ ├── Ler_banco.js # Leitura do banco
-│ └── Salvar_banco.js # Escrita no banco
+│ ├── Dados_usuarios.json     # Banco de dados (JSON)
+│ ├── Ler_banco.js            # Leitura do banco
+│ └── Salvar_banco.js         # Escrita no banco
 │
 ├── BUSCARCEP
-│ └── Buscar_cep.js # Consumo de API de CEP
+│ └── Buscar_cep.js           # Consumo de API de CEP
 │
 ├── CONTROLEUSUARIO
 │ ├── Editar_dados_usuario.js # Eedição de usuários cadastrados
-│ ├── Excluir_usuario.js # Exclusão de usuários cadastrados
-│ ├── Listar_usuarios.js # Listagem de usuários cadastrados
-│ └── Salvar_usuario.js # Salvamento de novos usuários
+│ ├── Excluir_usuario.js      # Exclusão de usuários cadastrados
+│ ├── Listar_usuarios.js      # Listagem de usuários cadastrados
+│ └── Salvar_usuario.js       # Salvamento de novos usuários
 │
 ├── FRONTEND
-│ ├── index.html # Estrutura da aplicação
-│ ├── style.css # Estilização
-│ ├── script.js # Lógica principal (frontend)
-│ └── formatacoes.js # Máscaras (CPF, CEP)
+│ ├── index.html              # Estrutura da aplicação
+│ ├── style.css               # Estilização
+│ ├── script.js               # Lógica principal (frontend)
+│ └── formatacoes.js          # Máscaras (CPF, CEP)
 │
 ├── SERVIDOR
-│ └── server.js # Servidor Node.js (Express)
+│ └── server.js               # Servidor Node.js (Express)
 │
 ├── VALIDARCADASTRO
-│ ├── Validar_cep.js # Validação do CEP informado pelo usuário
-│ ├── Validar_cpf.js # Validação do CPF
-│ ├── Validar_email.js # Validação de email
+│ ├── Validar_cep.js          # Validação do CEP informado pelo usuário
+│ ├── Validar_cpf.js          # Validação do CPF
+│ ├── Validar_email.js        # Validação de email
 │ └── Validar_nomecompleto.js # Validação do nome completo do usuário
 │
 ├── .gitignore
