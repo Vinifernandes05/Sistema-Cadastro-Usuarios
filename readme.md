@@ -73,10 +73,10 @@ SISTEMA-CADASTRO-USUARIOS
 │ └── Buscar_cep.js # Consumo de API de CEP
 │
 ├── CONTROLEUSUARIO
-│ ├── Editar_dados_usuario.js
-│ ├── Excluir_usuario.js
-│ ├── Listar_usuarios.js
-│ └── Salvar_usuario.js
+│ ├── Editar_dados_usuario.js # Eedição de usuários cadastrados
+│ ├── Excluir_usuario.js # Exclusão de usuários cadastrados
+│ ├── Listar_usuarios.js # Listagem de usuários cadastrados
+│ └── Salvar_usuario.js # Salvamento de novos usuários
 │
 ├── FRONTEND
 │ ├── index.html # Estrutura da aplicação
@@ -88,10 +88,10 @@ SISTEMA-CADASTRO-USUARIOS
 │ └── server.js # Servidor Node.js (Express)
 │
 ├── VALIDARCADASTRO
-│ ├── Validar_cep.js
-│ ├── Validar_cpf.js
-│ ├── Validar_email.js
-│ └── Validar_nomecompleto.js
+│ ├── Validar_cep.js # Validação do CEP informado pelo usuário
+│ ├── Validar_cpf.js # Validação do CPF
+│ ├── Validar_email.js # Validação de email
+│ └── Validar_nomecompleto.js # Validação do nome completo do usuário
 │
 ├── .gitignore
 ├── package.json
