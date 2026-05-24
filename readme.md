@@ -41,7 +41,8 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 ### 🔹 Outros
 - Git
 - GitHub
-- JSON (armazenamento de dados)
+- JSON 
+- API ViaCEP
 
 ---
 
