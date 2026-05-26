@@ -177,7 +177,7 @@ servidorweb.put("/editarusuario", async function(pedido, resposta) {
 
 
 // Rota para exclusão do usuário, recebe o CPF do usuário a ser excluído, chama a função de exclusão e retorna o resultado.
-servidorweb.delete("/excluirusuario", function (pedido, resposta) { //
+servidorweb.delete("/excluirusuario", async function (pedido, resposta) { //
     const cpf = pedido.body.cpf
 
     const resultado = await excluirusuario(cpf)
