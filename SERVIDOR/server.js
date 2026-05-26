@@ -49,10 +49,10 @@ servidorweb.post("/salvarusuario", async function(pedido, resposta) { //
         return resposta.status(400).json(resultadoEmailFormato)
     }
 
-    const resultadoEmailRepetido = validaremail.emailrepetido(usuario.email)
-    if(!resultadoEmailRepetido.valido) {
-        return resposta.status(400).json(resultadoEmailRepetido)
-    }
+    // const resultadoEmailRepetido = validaremail.emailrepetido(usuario.email)
+    // if(!resultadoEmailRepetido.valido) {
+        // return resposta.status(400).json(resultadoEmailRepetido)
+   // }
 
     const cpfnormalizado = cpf.trim().replace(/\D/g, "")
 
@@ -61,10 +61,10 @@ servidorweb.post("/salvarusuario", async function(pedido, resposta) { //
         return resposta.status(400).json(resultadoCPFFormato)
     }
 
-    const resultadoCPFRepetido = validarcpf.cpfrepetido(cpfnormalizado)
-    if (!resultadoCPFRepetido.valido) {
-        return resposta.status(400).json(resultadoCPFRepetido)
-    }
+    // const resultadoCPFRepetido = validarcpf.cpfrepetido(cpfnormalizado)
+    // if (!resultadoCPFRepetido.valido) {
+       //  return resposta.status(400).json(resultadoCPFRepetido)
+   //  }
 
     usuario.cpf = cpfnormalizado.replace(/\D/g, "") 
 
