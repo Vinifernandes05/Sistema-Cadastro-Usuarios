@@ -180,7 +180,7 @@ servidorweb.put("/editarusuario", async function(pedido, resposta) {
 servidorweb.delete("/excluirusuario", function (pedido, resposta) { //
     const cpf = pedido.body.cpf
 
-    const resultado = excluirusuario(cpf)
+    const resultado = await excluirusuario(cpf)
     if (!resultado.valido) {
         return resposta.status(400).json(resultado)
     }
