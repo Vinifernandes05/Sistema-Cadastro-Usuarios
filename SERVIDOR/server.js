@@ -22,8 +22,8 @@ servidorweb.use(express.urlencoded({ extended: true }))
 
 
 // Rota para listar os usuários cadastrados, mostrando o Nome Completo, E-mail, Cidade e Estado.
-servidorweb.get("/listarusuarios", function(pedido, resposta) { // 
-    const arrayusuarios = listarusuarios()
+servidorweb.get("/listarusuarios", async function(pedido, resposta) { // 
+    const arrayusuarios = await listarusuarios()
     resposta.json(arrayusuarios)
 })
 
