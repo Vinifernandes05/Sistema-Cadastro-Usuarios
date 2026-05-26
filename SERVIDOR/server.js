@@ -117,7 +117,7 @@ servidorweb.put("/editarusuario", async function(pedido, resposta) {
     }
 
     // Confere se existe usuário no banco.
-    const resultadoLista = listarusuarios()
+    const resultadoLista = await listarusuarios()
     if (!resultadoLista.valido) {
         return resposta.status(400).json(resultadoLista)
     }
@@ -137,7 +137,7 @@ servidorweb.put("/editarusuario", async function(pedido, resposta) {
 
     // Verifica email duplicado somente se o email foi alterado, ignorando o próprio usuário
     if (emailAtualNoBanco !== emailnormalizado) {
-        const resultadoEmailRepetido = validaremail.emailrepetido(
+        const resultadoEmailRepetido = await validaremail.emailrepetido(
             emailnormalizado,
             cpfAntigonormalizado
         )
@@ -148,7 +148,7 @@ servidorweb.put("/editarusuario", async function(pedido, resposta) {
 
     // Verifica CPF duplicado somente se o CPF foi alterado, ignorando o próprio usuário
     if (cpfAtualNoBanco !== cpfNovoDigitadonormalizado) {
-        const resultadoCPFRepetido = validarcpf.cpfrepetido(
+        const resultadoCPFRepetido = await validarcpf.cpfrepetido(
             cpfNovoDigitadonormalizado,
             cpfAntigonormalizado
         )
