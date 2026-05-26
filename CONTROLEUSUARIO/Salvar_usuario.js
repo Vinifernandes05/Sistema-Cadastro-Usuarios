@@ -15,9 +15,10 @@ async function salvarusuario(usuario) {
       }]);
 
       if (error) {
+            console.log("ERRO SUPABASE:", error)
             return {
                   valido: false,
-                  mensagem: "Erro ao salvar usuário no banco de dados."
+                  mensagem: error.mensagem
             };
       }
 
