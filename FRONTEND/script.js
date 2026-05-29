@@ -64,7 +64,7 @@ async function mostrarLista () {
     for (let i = 0; i < dados.dados.length; i++) {
         lista += `<div class="card-usuario"> 
 
-                    <h2> Usuário ${i + 1} </h2>
+                    <h2> Usuário ID ${dados.dados[i].id} </h2>
 
                         <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
                         <p> Email: ${dados.dados[i].email} </p>
