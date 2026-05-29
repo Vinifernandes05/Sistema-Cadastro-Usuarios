@@ -210,12 +210,6 @@ body {
     line-height: 1.6;
 }
 
-.card-usuario p {
-    margin-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-}
-
 /* ===== STICKY FOOTER BASE ===== */
 html, body {
     height: 100%;
