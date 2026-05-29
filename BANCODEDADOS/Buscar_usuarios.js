@@ -4,7 +4,10 @@ const supabase = require("./Conexao_supabase.js");
 
 // Função para ler o arquivo "Dados_usuarios.js" e transformar o conteúdo JSON em array de objetos JS.
 async function buscarusuarios() { 
-    const {data, error} = await supabase.from("usuarios").select("*");
+    const { data, error } = await supabase
+    .from("usuarios")
+    .select("*")
+    .order("id", { ascending: true });
 
     if (error) { // Verifica se ocorreu um erro ao buscar os usuários no banco de dados.
         return {

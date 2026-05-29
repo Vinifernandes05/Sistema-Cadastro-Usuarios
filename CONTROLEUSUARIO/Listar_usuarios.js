@@ -4,9 +4,11 @@ const supabase = require("../BANCODEDADOS/Conexao_supabase"); // Importa a funç
 
 // Função para listar os usuários cadastrados, mostrando o Nome Completo, E-mail, Cidade e Estado.
 async function listarusuarios () { 
-   const usuarios = await supabase.from("usuarios").select("*");
-
-   const { data, error } = usuarios;
+   const usuarios = await supabase
+      .from("usuarios")
+      .select("*")
+      .order("id", { ascending: true });
+      const { data, error } = usuarios;
 
    if (error) { // Verifica se ocorreu um erro ao listar os usuários no banco de dados.
       return {
