@@ -194,7 +194,7 @@ body {
 /* ===== <div> Cartões de usuário (Listagem, Edição e Exclusão) ===== */
 .card-usuario {
     background-color: #ffffff;
-    padding: 20px 30px;
+    padding: 50px 30px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     margin-bottom: 20px;
