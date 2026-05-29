@@ -66,25 +66,10 @@ async function mostrarLista () {
 
                     <h2> Usuário ID ${dados.dados[i].id} </h2>
 
-                    <p>
-                        <strong>Nome Completo:</strong>
-                        <span>${dados.dados[i].nomecompleto}</span>
-                    </p>
-
-                    <p>
-                        <strong>Email:</strong>
-                        <span>${dados.dados[i].email}</span>
-                    </p>
-
-                    <p>
-                        <strong>CPF:</strong>
-                        <span>${formatarCPF(dados.dados[i].cpf)}</span>
-                    </p>
-
-                    <p>
-                        <strong>CEP:</strong>
-                        <span>${formatarCEP(dados.dados[i].cep)}</span>
-                    </p>
+                        <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
+                        <p> Email: ${dados.dados[i].email} </p>
+                        <p> CPF: ${formatarCPF(dados.dados[i].cpf)} </p>
+                        <p> CEP: ${formatarCEP(dados.dados[i].cep)} </p>
 
                     <button type="button" class="btn-mostrardetalhes" onclick="botaoMostrarDetalhes(${i}, this)">Visualizar mais detalhes </button>
                     
@@ -144,25 +129,10 @@ async function mostrarEditar () {
 
                     <h2> Usuário ID ${dados.dados[i].id} </h2>
                     
-                    <p>
-                        <strong>Nome Completo:</strong>
-                        <span>${dados.dados[i].nomecompleto}</span>
-                    </p>
-
-                    <p>
-                        <strong>Email:</strong>
-                        <span>${dados.dados[i].email}</span>
-                    </p>
-
-                    <p>
-                        <strong>CPF:</strong>
-                        <span>${formatarCPF(dados.dados[i].cpf)}</span>
-                    </p>
-
-                    <p>
-                        <strong>CEP:</strong>
-                        <span>${formatarCEP(dados.dados[i].cep)}</span>
-                    </p>
+                    <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
+                    <p> Email: ${dados.dados[i].email} </p>
+                    <p> CPF: ${formatarCPF(dados.dados[i].cpf)}</p>
+                    <p> CEP: ${formatarCEP(dados.dados[i].cep)} </p>
 
                     <button type="button" class="btn-editar" onclick="botaoEditar(${i})">Editar usuário </button>
 
@@ -267,27 +237,10 @@ async function mostrarExcluir () {
     for (let i = 0; i < dados.dados.length; i++) {
         lista += `<div class ="card-usuario"> 
                     <h2> Usuário ID ${dados.dados[i].id} </h2>
-
-                    <p>
-                        <strong>Nome Completo:</strong>
-                        <span>${dados.dados[i].nomecompleto}</span>
-                    </p>
-
-                    <p>
-                        <strong>Email:</strong>
-                        <span>${dados.dados[i].email}</span>
-                    </p>
-
-                    <p>
-                        <strong>CPF:</strong>
-                        <span>${formatarCPF(dados.dados[i].cpf)}</span>
-                    </p>
-
-                    <p>
-                        <strong>CEP:</strong>
-                        <span>${formatarCEP(dados.dados[i].cep)}</span>
-                    </p>
-
+                    <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
+                    <p> Email: ${dados.dados[i].email} </p>
+                    <p> CPF: ${formatarCPF(dados.dados[i].cpf)} </p>
+                    <p> CEP: ${formatarCEP(dados.dados[i].cep)} </p>
                     <button type="button" class="btn-excluir" onclick="botaoExcluir('${dados.dados[i].cpf}', '${dados.dados[i].nomecompleto}')">Excluir</button>
                   </div>`
     }
@@ -306,14 +259,8 @@ async function botaoExcluir (cpf, nomedousuario) {
         <div class="card-usuario">
             <h4>Tem certeza que deseja excluir o usuário abaixo?</h4>
 
-            <p>
-                <strong>Nome Completo:</strong>
-                <span>${nomedousuario}</span>
-            </p>
-            <p>
-                <strong>CPF:</strong>
-                <span>${formatarCPF(cpf)}</span>
-            </p>
+            <p>Nome Completo: ${nomedousuario}</p>
+            <p>CPF: ${formatarCPF(cpf)}</p>
 
             <button class="btn-excluir" onclick="confirmarExclusao('${cpf}')">
                 Confirmar Exclusão

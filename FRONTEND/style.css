@@ -216,16 +216,6 @@ body {
     flex-direction: column;
 }
 
-.card-usuario strong {
-    color: #1e293b;
-    margin-bottom: 2px;
-}
-
-.card-usuario span {
-    word-break: break-word;
-    overflow-wrap: break-word;
-}
-
 /* ===== STICKY FOOTER BASE ===== */
 html, body {
     height: 100%;
