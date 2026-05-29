@@ -16,7 +16,7 @@ function mostrarCadastro () {
     app.innerHTML = `
     <h2>Tela de Cadastro de Usuário</h2>
                 
-    <form id="formCadastro" class="form-card">
+    <form id="formCadastro" class="card-cadastro"">
 
         <label>Nome Completo:</label>
         <input type="text" id="nomecompleto" placeholder="Campo Obrigatório">
@@ -160,7 +160,7 @@ async function botaoEditar (index) {
 
     app.innerHTML = `<h2> Edição do Usuário </h2>
 
-                    <form id="formEditar">
+                    <form id="formEditar"> class="card-cadastro">
 
                         <label> Nome Completo: </label>
                         <input type="text" id="nomecompleto" value="${usuario.nomecompleto}">
