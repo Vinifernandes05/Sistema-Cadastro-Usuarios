@@ -199,15 +199,6 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     margin-bottom: 20px;
     text-align: left;
-
-    /* Correção para textos longos */
-    overflow: hidden;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    word-break: break-word;
-
-    /* Melhor organização visual */
-    line-height: 1.6;
 }
 
 /* ===== STICKY FOOTER BASE ===== */
