@@ -4,15 +4,23 @@ async function excluirusuario(cpf) {
 
     const cpfnormalizado = cpf.trim().replace(/\D/g, "")
 
-    const { error } = await supabase
+    const { data, error } = await supabase
         .from("usuarios")
         .delete()
         .eq("cpf", cpfnormalizado)
+        .select()
 
     if (error) {
         return {
             valido: false,
             mensagem: error.message
+        }
+    }
+
+    if (data.length === 0) {
+        return {
+            valido: false,
+            mensagem: "CPF não encontrado."
         }
     }
 
