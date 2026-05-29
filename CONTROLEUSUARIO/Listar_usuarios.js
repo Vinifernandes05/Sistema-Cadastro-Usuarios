@@ -1,8 +1,7 @@
-//Arquivo responsável pela listagem dos usuários, retornando os usuários encontrados em formato de índice ou uma mensagem de erro, caso nao encontre.
+// Arquivo responsável por listar os usuários cadastrados no banco de dados e mostrar os dados dos usuários na listagem, como Nome Completo, E-mail, Cidade e Estado.
+const supabase = require("../BANCODEDADOS/Conexao_supabase"); 
 
-const supabase = require("../BANCODEDADOS/Conexao_supabase"); // Importa a função "lerbanco()", do arquivo "Ler_banco" e da pasta "BANCODEDADOS" para ler o banco de dados e obter o array de usuários cadastrados, para mostrar os dados dos usuários na listagem.
-
-// Função para listar os usuários cadastrados, mostrando o Nome Completo, E-mail, Cidade e Estado.
+// Função para listar os usuários cadastrados no banco de dados e mostrar os dados dos usuários na listagem, como Nome Completo, E-mail, Cidade e Estado.
 async function listarusuarios () { 
    const usuarios = await supabase
       .from("usuarios")

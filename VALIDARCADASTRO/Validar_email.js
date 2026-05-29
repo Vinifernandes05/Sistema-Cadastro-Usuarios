@@ -11,8 +11,7 @@ function emailincorreto(email) {
         }
     }
 
-    const validarformatoemail =
-        /^[A-Za-z0-9]+@(gmail|hotmail|outlook|yahoo)\.com$/.test(emailnormalizado)
+    const validarformatoemail = /^[A-Za-z0-9]+@(gmail|hotmail|outlook|yahoo)\.com$/.test(emailnormalizado)
 
     if (!validarformatoemail) {
         return {

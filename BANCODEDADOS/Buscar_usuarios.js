@@ -1,8 +1,5 @@
-// Arquivo responsável pela leitura do Banco de Dados, transformando o JSON em array de objetos JS.
+// Arquivo responsável por buscar os usuários cadastrados no banco de dados e retornar um array de objetos JS com os dados dos usuários.
 
-const supabase = require("./Conexao_supabase.js");  
-
-// Função para ler o arquivo "Dados_usuarios.js" e transformar o conteúdo JSON em array de objetos JS.
 async function buscarusuarios() { 
     const { data, error } = await supabase
     .from("usuarios")

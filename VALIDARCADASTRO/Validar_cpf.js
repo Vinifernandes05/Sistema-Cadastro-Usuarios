@@ -11,8 +11,7 @@ function validarCPF(CPF) {
         }
     }
 
-    const validarformatocpf =
-        /^(\d{11}|\d{3}\.\d{3}\.\d{3}\-\d{2})$/.test(cpfnormalizado)
+    const validarformatocpf = /^(\d{11}|\d{3}\.\d{3}\.\d{3}\-\d{2})$/.test(cpfnormalizado)
 
     if (!validarformatocpf) {
         return {

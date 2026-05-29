@@ -24,6 +24,7 @@ async function editarusuario(usuario) {
         usuarioAtual.cpf === usuario.cpf &&
         usuarioAtual.cep === usuario.cep
 
+    // Verifica se nao houve alteração nos dados do usuário, quando for editar os dados
     if (semAlteracoes) {
         return {
             valido: false,

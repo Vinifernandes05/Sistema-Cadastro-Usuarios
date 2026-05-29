@@ -4,7 +4,8 @@ const buscarcep = require("../BUSCARCEP/Buscar_cep")
 async function salvarusuario(usuario) {
 
     const dadoscep = await buscarcep(usuario.cep)
-
+    
+    // Verifica se os dados do CEP são válidos, quando for salvar um novo usuário.
     if (!dadoscep.valido) {
         return dadoscep
     }

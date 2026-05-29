@@ -3,7 +3,7 @@ const supabase = require("../BANCODEDADOS/Conexao_supabase")
 async function excluirusuario(cpf) {
 
     const cpfnormalizado = cpf.trim().replace(/\D/g, "")
-
+     
     const { data, error } = await supabase
         .from("usuarios")
         .delete()
@@ -16,7 +16,7 @@ async function excluirusuario(cpf) {
             mensagem: error.message
         }
     }
-
+    
     if (data.length === 0) {
         return {
             valido: false,
