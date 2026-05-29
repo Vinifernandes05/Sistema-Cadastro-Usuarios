@@ -131,7 +131,7 @@ body {
 /* Botão Cadastrar */
 #app button[type="submit"],
 #app button.btn-confirmar {
-    background-color: #00c943;
+    background-color: #16a746;
     color: white;
 }
 
