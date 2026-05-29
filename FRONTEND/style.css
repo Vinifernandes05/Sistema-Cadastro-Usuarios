@@ -199,6 +199,31 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     margin-bottom: 20px;
     text-align: left;
+
+    /* Correção para textos longos */
+    overflow: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+
+    /* Melhor organização visual */
+    line-height: 1.6;
+}
+
+.card-usuario p {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-usuario strong {
+    color: #1e293b;
+    margin-bottom: 2px;
+}
+
+.card-usuario span {
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 /* ===== STICKY FOOTER BASE ===== */
