@@ -160,7 +160,7 @@ async function botaoEditar (index) {
 
     app.innerHTML = `<h2> Edição do Usuário </h2>
 
-                    <form id="formEditar"> class="card-cadastro">
+                    <form id="formEditar" class="card-cadastro">
 
                         <label> Nome Completo: </label>
                         <input type="text" id="nomecompleto" value="${usuario.nomecompleto}">
