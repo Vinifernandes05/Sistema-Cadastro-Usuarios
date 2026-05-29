@@ -131,14 +131,12 @@ body {
 /* Botão Cadastrar */
 #app button[type="submit"],
 #app button.btn-confirmar {
-    background-color: #4a6cf7;
+    background-color: #0d7c13;
     color: white;
 }
 
-
-
 #app button[type="submit"]:hover {
-    background-color: #3a57d0;
+    background-color: #00c943;
     transform: translateY(-1px);
 }
 
@@ -177,7 +175,7 @@ body {
 }
 
 #app button.btn-editar {
-    background-color: #dcdf59;
+    background-color: #1e3bdb;
     color: white;
     margin-left: 0;
 }
