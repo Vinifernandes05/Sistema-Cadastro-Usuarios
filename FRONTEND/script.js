@@ -16,7 +16,7 @@ function mostrarCadastro () {
     app.innerHTML = `
     <h2>Tela de Cadastro de Usuário</h2>
                 
-    <form id="formCadastro" class="card-cadastro"">
+    <form id="formCadastro" class="card-cadastro">
 
         <label>Nome Completo:</label>
         <input type="text" id="nomecompleto" placeholder="Campo Obrigatório">
