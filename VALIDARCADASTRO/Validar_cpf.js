@@ -1,23 +1,23 @@
 const supabase = require("../BANCODEDADOS/Conexao_supabase")
 
-function emailincorreto(email) {
+function validarCPF(CPF) {
 
-    const emailnormalizado = email.trim().toLowerCase();
+    const cpfnormalizado = CPF.trim();
 
-    if (emailnormalizado === "") {
+    if (cpfnormalizado === "") {
         return {
             valido: false,
-            mensagem: "E-mail não pode estar vazio."
+            mensagem: "CPF não pode estar vazio."
         }
     }
 
-    const validarformatoemail =
-        /^[A-Za-z0-9]+@(gmail|hotmail|outlook|yahoo)\.com$/.test(emailnormalizado)
+    const validarformatocpf =
+        /^(\d{11}|\d{3}\.\d{3}\.\d{3}\-\d{2})$/.test(cpfnormalizado)
 
-    if (!validarformatoemail) {
+    if (!validarformatocpf) {
         return {
             valido: false,
-            mensagem: "E-mail inválido. Formatação incorreta."
+            mensagem: "CPF inválido. Formatação incorreta."
         }
     }
 
@@ -26,19 +26,19 @@ function emailincorreto(email) {
     }
 }
 
-async function emailrepetido(email, cpfIgnorar = null) {
+async function cpfrepetido(CPF, cpfIgnorar = null) {
 
-    const emailnormalizado = email.trim().toLowerCase();
+    const cpfnormalizado = CPF.trim().replace(/\D/g, "")
 
     const { data, error } = await supabase
         .from("usuarios")
         .select("*")
-        .eq("email", emailnormalizado)
+        .eq("cpf", cpfnormalizado)
 
     if (error) {
         return {
             valido: false,
-            mensagem: "Erro ao validar email."
+            mensagem: "Erro ao validar CPF."
         }
     }
 
@@ -52,7 +52,7 @@ async function emailrepetido(email, cpfIgnorar = null) {
 
         return {
             valido: false,
-            mensagem: "E-mail já cadastrado."
+            mensagem: "CPF já cadastrado."
         }
     }
 
@@ -61,4 +61,4 @@ async function emailrepetido(email, cpfIgnorar = null) {
     }
 }
 
-module.exports = { emailincorreto, emailrepetido }
+module.exports = { validarCPF, cpfrepetido }
