@@ -200,6 +200,7 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     margin-bottom: 20px;
     text-align: left;
+    width: 100%; /* ← adiciona isso */
 }
 
 /* ===== STICKY FOOTER BASE ===== */
