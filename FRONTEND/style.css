@@ -135,6 +135,8 @@ body {
     color: white;
 }
 
+
+
 #app button[type="submit"]:hover {
     background-color: #3a57d0;
     transform: translateY(-1px);
@@ -174,6 +176,11 @@ body {
         transform: translateY(-1px);
 }
 
+#app button.btn-editar {
+    background-color: #dcdf59;
+    color: white;
+    margin-left: 0;
+}
 /* ===== Detalhes expandidos (Rua, Bairro, etc.) ===== */
 #app [id^="detalhes"] {
     margin-top: 20px;
