@@ -56,9 +56,10 @@ body {
 
 /* ===== <div id="app"> — onde o JS injeta as telas ===== */
 #app {
-    max-width: 500px;
+    width: 450px;
     margin: 0 auto;           /* centraliza o app na tela */
     padding: 0 16px;
+    flex: 1;                 /* para ocupar o espaço restante */
 }
 
 /* ===== Títulos das telas (ex: "Tela de Cadastro") ===== */
@@ -72,14 +73,18 @@ body {
     border-bottom: 2px solid #e8ecf0;
 }
 
-/* ===== Formulários criados pelo JS dentro do #app ===== */
-#app form,
-#app .container {
+/* ===== FORMULÁRIO DE CADASTRO ===== */
+.card-cadastro {
     background-color: #ffffff;
+
     padding: 32px 40px;
+
     border-radius: 12px;
+
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    text-align: left;         /* campos alinhados à esquerda */
+
+    text-align: left;
+
     margin-bottom: 15px;
 }
 
@@ -126,12 +131,12 @@ body {
 /* Botão Cadastrar */
 #app button[type="submit"],
 #app button.btn-confirmar {
-    background-color: #4a6cf7;
+    background-color: #16a746;
     color: white;
 }
 
 #app button[type="submit"]:hover {
-    background-color: #3a57d0;
+    background-color: #0b6e2c;
     transform: translateY(-1px);
 }
 
@@ -169,6 +174,11 @@ body {
         transform: translateY(-1px);
 }
 
+#app button.btn-editar {
+    background-color: #1e3bdb;
+    color: white;
+    margin-left: 0;
+}
 /* ===== Detalhes expandidos (Rua, Bairro, etc.) ===== */
 #app [id^="detalhes"] {
     margin-top: 20px;
@@ -199,6 +209,7 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     margin-bottom: 20px;
     text-align: left;
+    width: 100%; /* ← adiciona isso */
 }
 
 /* ===== STICKY FOOTER BASE ===== */
@@ -210,11 +221,6 @@ body {
     display: flex;
     flex-direction: column;
 }
-
-#app {
-    flex: 1; /* empurra o footer pra baixo */
-}
-
 
 /* ===== FIX DO ESPAÇO EMBAIXO ===== */
 body {

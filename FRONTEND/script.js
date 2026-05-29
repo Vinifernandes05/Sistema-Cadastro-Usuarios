@@ -16,7 +16,7 @@ function mostrarCadastro () {
     app.innerHTML = `
     <h2>Tela de Cadastro de Usuário</h2>
                 
-    <form id="formCadastro">
+    <form id="formCadastro" class="card-cadastro">
 
         <label>Nome Completo:</label>
         <input type="text" id="nomecompleto" placeholder="Campo Obrigatório">
@@ -64,7 +64,7 @@ async function mostrarLista () {
     for (let i = 0; i < dados.dados.length; i++) {
         lista += `<div class="card-usuario"> 
 
-                    <h2> Usuário ${i + 1} </h2>
+                    <h2> Usuário ID ${dados.dados[i].id} </h2>
 
                         <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
                         <p> Email: ${dados.dados[i].email} </p>
@@ -127,7 +127,8 @@ async function mostrarEditar () {
     for (let i = 0; i < dados.dados.length; i++) {
         lista += `<div class="card-usuario"> 
 
-                    <h2> Usuário ${i + 1} </h2>
+                    <h2> Usuário ID ${dados.dados[i].id} </h2>
+                    
                     <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
                     <p> Email: ${dados.dados[i].email} </p>
                     <p> CPF: ${formatarCPF(dados.dados[i].cpf)}</p>
@@ -159,7 +160,7 @@ async function botaoEditar (index) {
 
     app.innerHTML = `<h2> Edição do Usuário </h2>
 
-                    <form id="formEditar">
+                    <form id="formEditar" class="card-cadastro">
 
                         <label> Nome Completo: </label>
                         <input type="text" id="nomecompleto" value="${usuario.nomecompleto}">
@@ -235,11 +236,14 @@ async function mostrarExcluir () {
     let lista = ""
     for (let i = 0; i < dados.dados.length; i++) {
         lista += `<div class ="card-usuario"> 
-                    <h2> Usuário ${i + 1} </h2>
+
+                    <h2> Usuário ID ${dados.dados[i].id} </h2>
+
                     <p> Nome Completo: ${dados.dados[i].nomecompleto} </p>
                     <p> Email: ${dados.dados[i].email} </p>
                     <p> CPF: ${formatarCPF(dados.dados[i].cpf)} </p>
                     <p> CEP: ${formatarCEP(dados.dados[i].cep)} </p>
+                    
                     <button type="button" class="btn-excluir" onclick="botaoExcluir('${dados.dados[i].cpf}', '${dados.dados[i].nomecompleto}')">Excluir</button>
                   </div>`
     }

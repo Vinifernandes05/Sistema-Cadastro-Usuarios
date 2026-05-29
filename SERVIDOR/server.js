@@ -22,8 +22,8 @@ servidorweb.use(express.urlencoded({ extended: true }))
 
 
 // Rota para listar os usuários cadastrados, mostrando o Nome Completo, E-mail, Cidade e Estado.
-servidorweb.get("/listarusuarios", function(pedido, resposta) { // 
-    const arrayusuarios = listarusuarios()
+servidorweb.get("/listarusuarios", async function(pedido, resposta) { // 
+    const arrayusuarios = await listarusuarios()
     resposta.json(arrayusuarios)
 })
 
@@ -49,7 +49,7 @@ servidorweb.post("/salvarusuario", async function(pedido, resposta) { //
         return resposta.status(400).json(resultadoEmailFormato)
     }
 
-    const resultadoEmailRepetido = validaremail.emailrepetido(usuario.email)
+    const resultadoEmailRepetido = await validaremail.emailrepetido(usuario.email)
     if(!resultadoEmailRepetido.valido) {
         return resposta.status(400).json(resultadoEmailRepetido)
     }
@@ -61,7 +61,7 @@ servidorweb.post("/salvarusuario", async function(pedido, resposta) { //
         return resposta.status(400).json(resultadoCPFFormato)
     }
 
-    const resultadoCPFRepetido = validarcpf.cpfrepetido(cpfnormalizado)
+    const resultadoCPFRepetido = await validarcpf.cpfrepetido(cpfnormalizado)
     if (!resultadoCPFRepetido.valido) {
         return resposta.status(400).json(resultadoCPFRepetido)
     }
@@ -117,7 +117,7 @@ servidorweb.put("/editarusuario", async function(pedido, resposta) {
     }
 
     // Confere se existe usuário no banco.
-    const resultadoLista = listarusuarios()
+    const resultadoLista = await listarusuarios()
     if (!resultadoLista.valido) {
         return resposta.status(400).json(resultadoLista)
     }
@@ -137,7 +137,7 @@ servidorweb.put("/editarusuario", async function(pedido, resposta) {
 
     // Verifica email duplicado somente se o email foi alterado, ignorando o próprio usuário
     if (emailAtualNoBanco !== emailnormalizado) {
-        const resultadoEmailRepetido = validaremail.emailrepetido(
+        const resultadoEmailRepetido = await validaremail.emailrepetido(
             emailnormalizado,
             cpfAntigonormalizado
         )
@@ -148,7 +148,7 @@ servidorweb.put("/editarusuario", async function(pedido, resposta) {
 
     // Verifica CPF duplicado somente se o CPF foi alterado, ignorando o próprio usuário
     if (cpfAtualNoBanco !== cpfNovoDigitadonormalizado) {
-        const resultadoCPFRepetido = validarcpf.cpfrepetido(
+        const resultadoCPFRepetido = await validarcpf.cpfrepetido(
             cpfNovoDigitadonormalizado,
             cpfAntigonormalizado
         )
@@ -177,10 +177,10 @@ servidorweb.put("/editarusuario", async function(pedido, resposta) {
 
 
 // Rota para exclusão do usuário, recebe o CPF do usuário a ser excluído, chama a função de exclusão e retorna o resultado.
-servidorweb.delete("/excluirusuario", function (pedido, resposta) { //
+servidorweb.delete("/excluirusuario", async function (pedido, resposta) { //
     const cpf = pedido.body.cpf
 
-    const resultado = excluirusuario(cpf)
+    const resultado = await excluirusuario(cpf)
     if (!resultado.valido) {
         return resposta.status(400).json(resultado)
     }
