@@ -56,7 +56,7 @@ body {
 
 /* ===== <div id="app"> — onde o JS injeta as telas ===== */
 #app {
-    max-width: 800px;
+    width: 800px;
     margin: 0 auto;           /* centraliza o app na tela */
     padding: 0 16px;
     flex: 1;                 /* para ocupar o espaço restante */
