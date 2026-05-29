@@ -73,15 +73,21 @@ body {
     border-bottom: 2px solid #e8ecf0;
 }
 
-/* ===== Formulários criados pelo JS dentro do #app ===== */
-#app form,
-#app .container {
+/* ===== FORMULÁRIOS ===== */
+.form-card {
     background-color: #ffffff;
+
+    width: 100%;
+    max-width: 500px;
+
     padding: 32px 40px;
+    margin: 0 auto 20px auto;
+
     border-radius: 12px;
+
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    text-align: left;         /* campos alinhados à esquerda */
-    margin-bottom: 15px;
+
+    text-align: left;
 }
 
 /* ===== Labels dos campos ===== */
