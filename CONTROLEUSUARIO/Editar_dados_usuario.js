@@ -3,6 +3,34 @@ const buscarcep = require("../BUSCARCEP/Buscar_cep")
 
 async function editarusuario(usuario) {
 
+    // Busca usuário atual no banco
+    const { data: usuarioAtual, error: erroBusca } = await supabase
+        .from("usuarios")
+        .select("*")
+        .eq("cpf", usuario.cpfOriginal)
+        .single()
+
+    if (erroBusca || !usuarioAtual) {
+        return {
+            valido: false,
+            mensagem: "Usuário não encontrado."
+        }
+    }
+
+    // Verifica se houve alteração
+    const semAlteracoes =
+        usuarioAtual.nomecompleto === usuario.nomecompleto &&
+        usuarioAtual.email === usuario.email &&
+        usuarioAtual.cpf === usuario.cpf &&
+        usuarioAtual.cep === usuario.cep
+
+    if (semAlteracoes) {
+        return {
+            valido: false,
+            mensagem: "Nenhuma alteração foi realizada."
+        }
+    }
+
     const dadoscep = await buscarcep(usuario.cep)
 
     if (!dadoscep.valido) {
