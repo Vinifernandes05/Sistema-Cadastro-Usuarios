@@ -56,9 +56,10 @@ body {
 
 /* ===== <div id="app"> — onde o JS injeta as telas ===== */
 #app {
-    max-width: 500px;
-    margin: 0 auto;           /* centraliza o app na tela */
+    max-width: 700px;
+    margin: 0 auto;
     padding: 0 16px;
+    flex: 1; /* empurra o footer pra baixo */
 }
 
 /* ===== Títulos das telas (ex: "Tela de Cadastro") ===== */
@@ -210,11 +211,6 @@ body {
     display: flex;
     flex-direction: column;
 }
-
-#app {
-    flex: 1; /* empurra o footer pra baixo */
-}
-
 
 /* ===== FIX DO ESPAÇO EMBAIXO ===== */
 body {
