@@ -6,7 +6,7 @@ Este projeto consiste no desenvolvimento de um sistema completo de cadastro de u
 
 A aplicação foi construída com foco em **organização de código, separação de responsabilidades, experiência do usuário e desenvolvimento web**.
 
-Além disso, o projeto possui **integração com API externa** para busca automática de endereço via CEP, proporcionando uma melhor experiência ao usuário.
+Além disso, o projeto possui **Integração com API externa**, para busca automática de endereço via CEP, e **Integração com banco de dados PostgreSQL através do Supabase**, para salvar os usuários de forma eficiente.
 
 🔗 **Link do Projeto:**   https://sistema-cadastro-usuarios.onrender.com/
 
@@ -18,6 +18,7 @@ Além disso, o projeto possui **integração com API externa** para busca autom�
 - Implementar operações CRUD completas
 - Trabalhar com requisições HTTP (GET, POST, PUT, DELETE)
 - Trabahar com API externa
+- Integrar aplicação com banco de dados em nuvem
 - Manipular dados em formato JSON
 - Desenvolver interfaces dinâmicas com JavaScript
 - Organizar o projeto em camadas (Frontend, Backend, Validações, Banco)
@@ -38,6 +39,10 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 - Node.js
 - Express.js
 
+### 🔹 Banco de Dados
+- Supabase
+- PostgreSQL
+
 ### 🔹 Outros
 - Git
 - GitHub
@@ -54,9 +59,12 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 ✔️ Edição de dados do usuário  
 ✔️ Exclusão com confirmação personalizada  
 ✔️ Integração com API de CEP (preenchimento automático de endereço)  
+✔️ Persistência de dados em nuvem utilizando Supabase
 ✔️ Formatação automática de CPF e CEP  
 ✔️ Footer profissional com contatos pessoais  
-✔️ Validações de: Nome completo, Email, CPF e CEP (com busca automática)  
+✔️ Validações de Nome completo, Email, CPF e CEP
+✔️ Interface dinâmica sem recarregamento de página  
+✔️ Integração completa entre Frontend, Backend e Banco de Dados  
 
 ---
 
@@ -66,9 +74,9 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 SISTEMA-CADASTRO-USUARIOS
 │
 ├── BANCODEDADOS
-│ ├── Dados_usuarios.json     # Banco de dados (JSON)
-│ ├── Ler_banco.js            # Leitura do banco
-│ └── Salvar_banco.js         # Escrita no banco
+│ ├── Buscar_usuarios.json     # Busca usuários cadastrados no banco de dados (Supabase)
+│ └── Conexao_supabase.js      # Conexão com o Supabase 
+│   
 │
 ├── BUSCARCEP
 │ └── Buscar_cep.js           # Consumo de API de CEP
@@ -107,9 +115,11 @@ SISTEMA-CADASTRO-USUARIOS
 1. Usuário interage com a interface (front-end)
 2. JavaScript envia requisições para o back-end
 3. O servidor processa a lógica (CRUD)
-4. Os dados são lidos ou atualizados no arquivo JSON
-5. A resposta retorna para o front-end
-6. A interface é atualizada dinamicamente
+4. O sistema realiza validações dos dados
+5. O Backend se comunica com o banco Supabase
+6. O Supabase armazena ou retorna os dados
+7. A resposta retorna para o front-end
+8. A interface é atualizada dinamicamente
 
 ---
 
